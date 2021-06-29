@@ -98,23 +98,12 @@ namespace GroundStation
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.xAngle = new System.Windows.Forms.TrackBar();
-            this.yAngle = new System.Windows.Forms.TrackBar();
-            this.zAngle = new System.Windows.Forms.TrackBar();
-            this.labelAngleX = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.labelAngleY = new System.Windows.Forms.Label();
-            this.labelAngleZ = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.presGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.packGraph)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -611,92 +600,11 @@ namespace GroundStation
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // xAngle
-            // 
-            this.xAngle.Location = new System.Drawing.Point(42, 277);
-            this.xAngle.Maximum = 360;
-            this.xAngle.Name = "xAngle";
-            this.xAngle.Size = new System.Drawing.Size(234, 56);
-            this.xAngle.TabIndex = 39;
-            this.xAngle.Value = 90;
-            this.xAngle.Scroll += new System.EventHandler(this.xAngle_Scroll);
-            // 
-            // yAngle
-            // 
-            this.yAngle.Location = new System.Drawing.Point(296, 277);
-            this.yAngle.Maximum = 360;
-            this.yAngle.Name = "yAngle";
-            this.yAngle.Size = new System.Drawing.Size(234, 56);
-            this.yAngle.TabIndex = 40;
-            this.yAngle.Scroll += new System.EventHandler(this.yAngle_Scroll);
-            // 
-            // zAngle
-            // 
-            this.zAngle.Location = new System.Drawing.Point(536, 277);
-            this.zAngle.Maximum = 360;
-            this.zAngle.Name = "zAngle";
-            this.zAngle.Size = new System.Drawing.Size(234, 56);
-            this.zAngle.TabIndex = 41;
-            this.zAngle.Scroll += new System.EventHandler(this.zAngle_Scroll);
-            // 
-            // labelAngleX
-            // 
-            this.labelAngleX.AutoSize = true;
-            this.labelAngleX.Location = new System.Drawing.Point(149, 316);
-            this.labelAngleX.Name = "labelAngleX";
-            this.labelAngleX.Size = new System.Drawing.Size(24, 17);
-            this.labelAngleX.TabIndex = 42;
-            this.labelAngleX.Text = "90";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(863, 448);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
-            this.label5.TabIndex = 43;
-            this.label5.Text = "label5";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(871, 456);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "label6";
-            // 
-            // labelAngleY
-            // 
-            this.labelAngleY.AutoSize = true;
-            this.labelAngleY.Location = new System.Drawing.Point(407, 316);
-            this.labelAngleY.Name = "labelAngleY";
-            this.labelAngleY.Size = new System.Drawing.Size(16, 17);
-            this.labelAngleY.TabIndex = 45;
-            this.labelAngleY.Text = "0";
-            // 
-            // labelAngleZ
-            // 
-            this.labelAngleZ.AutoSize = true;
-            this.labelAngleZ.Location = new System.Drawing.Point(643, 316);
-            this.labelAngleZ.Name = "labelAngleZ";
-            this.labelAngleZ.Size = new System.Drawing.Size(16, 17);
-            this.labelAngleZ.TabIndex = 46;
-            this.labelAngleZ.Text = "0";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1772, 913);
-            this.Controls.Add(this.labelAngleZ);
-            this.Controls.Add(this.labelAngleY);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.labelAngleX);
-            this.Controls.Add(this.zAngle);
-            this.Controls.Add(this.yAngle);
-            this.Controls.Add(this.xAngle);
             this.Controls.Add(this.simulation_display);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.altGraph);
@@ -729,9 +637,6 @@ namespace GroundStation
             ((System.ComponentModel.ISupportInitialize)(this.tempGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.presGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.packGraph)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zAngle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -786,13 +691,5 @@ namespace GroundStation
         private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.Timer timer5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TrackBar xAngle;
-        private System.Windows.Forms.TrackBar yAngle;
-        private System.Windows.Forms.TrackBar zAngle;
-        private System.Windows.Forms.Label labelAngleX;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label labelAngleY;
-        private System.Windows.Forms.Label labelAngleZ;
     }
 }

@@ -73,23 +73,5 @@ namespace GroundStation
 
         }
 
-        private void xAngle_Scroll(object sender, EventArgs e)
-        {
-            simulationObject.angleX = (float) xAngle.Value;
-            labelAngleX.Text = xAngle.Value.ToString();
-        }
-
-        private void yAngle_Scroll(object sender, EventArgs e)
-        {
-            simulationObject.angleY = (float)yAngle.Value;
-            labelAngleY.Text = yAngle.Value.ToString();
-        }
-
-        private void zAngle_Scroll(object sender, EventArgs e)
-        {
-            simulationObject.angleZ = (float)zAngle.Value;
-            labelAngleZ.Text = zAngle.Value.ToString();
-        }
-
     }
 }
