@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -12,6 +13,8 @@ namespace GroundStation
 {
     public partial class Form1 : Form
     {
+
+        public Simulation simulationObject;
         public Form1()
         {
             this.FormClosed += Form1_FormClosed;
@@ -62,6 +65,31 @@ namespace GroundStation
 
         private void startButton_Click(object sender, EventArgs e)
         {
+
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void xAngle_Scroll(object sender, EventArgs e)
+        {
+            simulationObject.angleX = (float) xAngle.Value;
+            labelAngleX.Text = xAngle.Value.ToString();
+        }
+
+        private void yAngle_Scroll(object sender, EventArgs e)
+        {
+            simulationObject.angleY = (float)yAngle.Value;
+            labelAngleY.Text = yAngle.Value.ToString();
+        }
+
+        private void zAngle_Scroll(object sender, EventArgs e)
+        {
+            simulationObject.angleZ = (float)zAngle.Value;
+            labelAngleZ.Text = zAngle.Value.ToString();
+        }
+
     }
 }

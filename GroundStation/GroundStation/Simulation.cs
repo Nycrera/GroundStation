@@ -20,9 +20,9 @@ namespace GroundStation
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Model model;
-        private float angleX = 90;
-        private float angleY = 0;
-        private float angleZ = 0;
+        public float angleX = 90;
+        public float angleY = 0;
+        public float angleZ = 0;
         private Vector3 position = new Vector3(0, 0, 0);
         private Matrix world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
         private Matrix view = Matrix.CreateLookAt(new Vector3(200, 200, 200), new Vector3(0, 0, 0), Vector3.UnitY);
@@ -94,9 +94,6 @@ namespace GroundStation
         {
 
             // TODO: Add your update logic here
-            angleX += 0.1f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            angleY += 0.2f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //angleZ += 0.03f * (float) gameTime.ElapsedGameTime.TotalMilliseconds;
 
             base.Update(gameTime);
         }
@@ -110,7 +107,7 @@ namespace GroundStation
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            world = Matrix.CreateRotationX(angleX) * Matrix.CreateRotationY(angleY) * Matrix.CreateTranslation(position);
+            world = Matrix.CreateRotationX((float)(Math.PI * angleX / 180.0)) * Matrix.CreateRotationY((float)(Math.PI * angleY / 180.0)) * Matrix.CreateRotationZ((float)(Math.PI * angleZ / 180.0)) * Matrix.CreateTranslation(position);
             DrawModel(model, world, view, projection);
 
             base.Draw(gameTime);

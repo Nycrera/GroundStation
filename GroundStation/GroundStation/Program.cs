@@ -11,8 +11,10 @@ namespace GroundStation
         static void Main(string[] args)
         {
             Form1 form = new Form1();
-            form.Show();
             Simulation game = new Simulation(form.getDrawSurface());
+            form.simulationObject = game;
+
+            form.Show();
             game.Run();
         }
     }
