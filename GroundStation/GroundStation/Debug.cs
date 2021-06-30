@@ -47,5 +47,18 @@ namespace GroundStation
             Form1 form = mainFormObject;
             MessageBox.Show(form.Size.Width + " " + form.Size.Height);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 form = mainFormObject;
+            try
+            { 
+            form.updateLocation(float.Parse(latData.Text), float.Parse(lngData.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Failed to update the location, check data.");
+            }
+        }
     }
 }

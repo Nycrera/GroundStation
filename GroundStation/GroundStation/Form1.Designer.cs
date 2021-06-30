@@ -98,7 +98,7 @@ namespace GroundStation
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.gMap = new GMap.NET.WindowsForms.GMapControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
@@ -601,20 +601,38 @@ namespace GroundStation
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // panel1
+            // gMap
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.panel1.Location = new System.Drawing.Point(1256, 394);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(484, 315);
-            this.panel1.TabIndex = 33;
+            this.gMap.Bearing = 0F;
+            this.gMap.CanDragMap = true;
+            this.gMap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gMap.GrayScaleMode = false;
+            this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMap.LevelsKeepInMemmory = 5;
+            this.gMap.Location = new System.Drawing.Point(1256, 394);
+            this.gMap.MarkersEnabled = true;
+            this.gMap.MaxZoom = 18;
+            this.gMap.MinZoom = 2;
+            this.gMap.MouseWheelZoomEnabled = true;
+            this.gMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gMap.Name = "gMap";
+            this.gMap.NegativeMode = false;
+            this.gMap.PolygonsEnabled = true;
+            this.gMap.RetryLoadTile = 0;
+            this.gMap.RoutesEnabled = true;
+            this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gMap.ShowTileGridLines = false;
+            this.gMap.Size = new System.Drawing.Size(484, 315);
+            this.gMap.TabIndex = 39;
+            this.gMap.Zoom = 13D;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1902, 993);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.gMap);
             this.Controls.Add(this.simulation_display);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.altGraph);
@@ -642,6 +660,7 @@ namespace GroundStation
             this.Name = "Form1";
             this.Text = "SwifTurk Ground Station";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).EndInit();
@@ -702,6 +721,6 @@ namespace GroundStation
         private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.Timer timer5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Panel panel1;
+        private GMap.NET.WindowsForms.GMapControl gMap;
     }
 }

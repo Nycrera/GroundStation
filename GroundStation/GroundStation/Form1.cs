@@ -13,7 +13,6 @@ namespace GroundStation
 {
     public partial class Form1 : Form
     {
-
         public Simulation simulationObject;
         public Form1()
         {
@@ -73,5 +72,26 @@ namespace GroundStation
 
         }
 
+        private void Form1_Load_1(object sender, EventArgs e)
+        {
+            gMap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
+            gMap.SetPositionByKeywords("Istanbul, Turkey"); // Ininitally point to Istanbul, since no data is present
+            //gMap.Position = new GMap.NET.PointLatLng(45,45); // An example usage of lat long
+
+        }
+
+        public void updateLocation(float lat, float lng)
+        {
+            GMap.NET.WindowsForms.GMapOverlay markers = new GMap.NET.WindowsForms.GMapOverlay("markers");
+            GMap.NET.WindowsForms.GMapMarker marker =
+    new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
+        new GMap.NET.PointLatLng(lat, lng),
+        GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
+            markers.Markers.Add(marker);
+
+            gMap.Overlays.Clear();
+            gMap.Overlays.Add(markers);
+        }
     }
 }

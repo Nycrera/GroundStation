@@ -36,6 +36,11 @@ namespace GroundStation
             this.yAngle = new System.Windows.Forms.TrackBar();
             this.xAngle = new System.Windows.Forms.TrackBar();
             this.button1 = new System.Windows.Forms.Button();
+            this.latData = new System.Windows.Forms.TextBox();
+            this.lngData = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
@@ -106,11 +111,58 @@ namespace GroundStation
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // latData
+            // 
+            this.latData.Location = new System.Drawing.Point(647, 90);
+            this.latData.Name = "latData";
+            this.latData.Size = new System.Drawing.Size(100, 22);
+            this.latData.TabIndex = 54;
+            // 
+            // lngData
+            // 
+            this.lngData.Location = new System.Drawing.Point(647, 118);
+            this.lngData.Name = "lngData";
+            this.lngData.Size = new System.Drawing.Size(100, 22);
+            this.lngData.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(578, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 17);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Latitude:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(561, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Longitude:";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(560, 151);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(195, 42);
+            this.button2.TabIndex = 58;
+            this.button2.Text = "Update Location";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 490);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lngData);
+            this.Controls.Add(this.latData);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelAngleZ);
             this.Controls.Add(this.labelAngleY);
@@ -138,5 +190,10 @@ namespace GroundStation
         private System.Windows.Forms.TrackBar yAngle;
         private System.Windows.Forms.TrackBar xAngle;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox latData;
+        private System.Windows.Forms.TextBox lngData;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
     }
 }
