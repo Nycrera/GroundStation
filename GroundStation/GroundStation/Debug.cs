@@ -41,5 +41,11 @@ namespace GroundStation
             simulationObject.angleZ = (float)zAngle.Value;
             labelAngleZ.Text = zAngle.Value.ToString();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1 form = mainFormObject;
+            MessageBox.Show(form.Size.Width + " " + form.Size.Height);
+        }
     }
 }

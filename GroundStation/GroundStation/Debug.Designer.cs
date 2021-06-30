@@ -35,6 +35,7 @@ namespace GroundStation
             this.zAngle = new System.Windows.Forms.TrackBar();
             this.yAngle = new System.Windows.Forms.TrackBar();
             this.xAngle = new System.Windows.Forms.TrackBar();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
@@ -95,11 +96,22 @@ namespace GroundStation
             this.xAngle.Value = 90;
             this.xAngle.Scroll += new System.EventHandler(this.xAngle_Scroll);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 90);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 49);
+            this.button1.TabIndex = 53;
+            this.button1.Text = "Read Form Sizes";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 490);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelAngleZ);
             this.Controls.Add(this.labelAngleY);
             this.Controls.Add(this.labelAngleX);
@@ -125,5 +137,6 @@ namespace GroundStation
         private System.Windows.Forms.TrackBar zAngle;
         private System.Windows.Forms.TrackBar yAngle;
         private System.Windows.Forms.TrackBar xAngle;
+        private System.Windows.Forms.Button button1;
     }
 }
