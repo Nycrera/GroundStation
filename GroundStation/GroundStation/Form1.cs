@@ -76,7 +76,7 @@ namespace GroundStation
         {
             gMap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
-            gMap.SetPositionByKeywords("Istanbul, Turkey"); // Ininitally point to Istanbul, since no data is present
+            gMap.Position = new GMap.NET.PointLatLng(41.007848569582244, 28.98043706315273); // Ininitally point to Istanbul, since no data is present
             //gMap.Position = new GMap.NET.PointLatLng(45,45); // An example usage of lat long
 
         }
@@ -92,6 +92,7 @@ namespace GroundStation
 
             gMap.Overlays.Clear();
             gMap.Overlays.Add(markers);
+            gMap.Update();
         }
     }
 }

@@ -23,7 +23,8 @@ namespace GroundStation
         public float angleX = 90;
         public float angleY = 0;
         public float angleZ = 0;
-        private Vector3 position = new Vector3(0, 0, 0);
+        public Vector3 position = new Vector3(0, 0, 0);
+        private Matrix positionMatrix = Matrix.CreateTranslation(new Vector3(0,0,0)); // positionMatrix = CreateTranslation(position)
         private Matrix world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
         private Matrix view = Matrix.CreateLookAt(new Vector3(200, 200, 200), new Vector3(0, 0, 0), Vector3.UnitY);
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 600f);
@@ -107,19 +108,20 @@ namespace GroundStation
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            world = Matrix.CreateRotationX((float)(Math.PI * angleX / 180.0)) * Matrix.CreateRotationY((float)(Math.PI * angleY / 180.0)) * Matrix.CreateRotationZ((float)(Math.PI * angleZ / 180.0)) * Matrix.CreateTranslation(position);
-            DrawModel(model, world, view, projection);
+            positionMatrix = Matrix.CreateRotationX((float)(Math.PI * angleX / 180.0)) * Matrix.CreateRotationY((float)(Math.PI * angleY / 180.0)) * Matrix.CreateRotationZ((float)(Math.PI * angleZ / 180.0)) * Matrix.CreateTranslation(position);
+            
+            DrawModel(model, positionMatrix, view, projection);
 
             base.Draw(gameTime);
         }
-        private void DrawModel(Model model, Matrix world, Matrix view, Matrix projection)
+        private void DrawModel(Model model, Matrix modelTranslation, Matrix view, Matrix projection)
         {
             foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.EnableDefaultLighting();
-                    effect.World = world;
+                    effect.World = modelTranslation;
                     effect.View = view;
                     effect.Projection = projection;
                     effect.LightingEnabled = true;

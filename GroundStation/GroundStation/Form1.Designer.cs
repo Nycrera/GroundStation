@@ -84,7 +84,6 @@ namespace GroundStation
             this.statusLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.portCombo = new System.Windows.Forms.ComboBox();
-            this.camera_display = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.altGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tempGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -99,6 +98,7 @@ namespace GroundStation
             this.timer5 = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.gMap = new GMap.NET.WindowsForms.GMapControl();
+            this.camera_display = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
@@ -447,14 +447,6 @@ namespace GroundStation
             this.portCombo.Size = new System.Drawing.Size(192, 24);
             this.portCombo.TabIndex = 31;
             // 
-            // camera_display
-            // 
-            this.camera_display.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.camera_display.Location = new System.Drawing.Point(1256, 56);
-            this.camera_display.Name = "camera_display";
-            this.camera_display.Size = new System.Drawing.Size(484, 315);
-            this.camera_display.TabIndex = 32;
-            // 
             // chart1
             // 
             chartArea1.AxisX.Title = "Time (t)";
@@ -627,6 +619,14 @@ namespace GroundStation
             this.gMap.TabIndex = 39;
             this.gMap.Zoom = 13D;
             // 
+            // camera_display
+            // 
+            this.camera_display.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.camera_display.Location = new System.Drawing.Point(1256, 56);
+            this.camera_display.Name = "camera_display";
+            this.camera_display.Size = new System.Drawing.Size(484, 315);
+            this.camera_display.TabIndex = 32;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -707,7 +707,6 @@ namespace GroundStation
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox portCombo;
-        private System.Windows.Forms.Panel camera_display;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         public System.Windows.Forms.DataVisualization.Charting.Chart altGraph;
         public System.Windows.Forms.DataVisualization.Charting.Chart tempGraph;
@@ -722,5 +721,6 @@ namespace GroundStation
         private System.Windows.Forms.Timer timer5;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private GMap.NET.WindowsForms.GMapControl gMap;
+        private System.Windows.Forms.Panel camera_display;
     }
 }
