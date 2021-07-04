@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 
 namespace GroundStation
 {
@@ -9,6 +10,8 @@ namespace GroundStation
         /// </summary>
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Form1 form = new Form1();
             Simulation game = new Simulation(form.getDrawSurface());
             form.simulationObject = game;
