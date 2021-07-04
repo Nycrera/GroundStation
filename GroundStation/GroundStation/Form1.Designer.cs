@@ -367,7 +367,7 @@ namespace GroundStation
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1747, 938);
+            this.button3.Location = new System.Drawing.Point(1594, 715);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(146, 42);
             this.button3.TabIndex = 30;
@@ -376,7 +376,7 @@ namespace GroundStation
             // 
             // slct_file
             // 
-            this.slct_file.Location = new System.Drawing.Point(939, 562);
+            this.slct_file.Location = new System.Drawing.Point(963, 562);
             this.slct_file.Name = "slct_file";
             this.slct_file.Size = new System.Drawing.Size(146, 42);
             this.slct_file.TabIndex = 29;
@@ -387,7 +387,7 @@ namespace GroundStation
             // byteTrans
             // 
             this.byteTrans.AutoSize = true;
-            this.byteTrans.Location = new System.Drawing.Point(958, 692);
+            this.byteTrans.Location = new System.Drawing.Point(982, 692);
             this.byteTrans.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.byteTrans.Name = "byteTrans";
             this.byteTrans.Size = new System.Drawing.Size(127, 17);
@@ -407,7 +407,7 @@ namespace GroundStation
             // 
             // send_video
             // 
-            this.send_video.Location = new System.Drawing.Point(902, 611);
+            this.send_video.Location = new System.Drawing.Point(926, 611);
             this.send_video.Margin = new System.Windows.Forms.Padding(4);
             this.send_video.Name = "send_video";
             this.send_video.Size = new System.Drawing.Size(224, 63);
@@ -601,7 +601,7 @@ namespace GroundStation
             this.gMap.GrayScaleMode = false;
             this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap.LevelsKeepInMemmory = 5;
-            this.gMap.Location = new System.Drawing.Point(1256, 394);
+            this.gMap.Location = new System.Drawing.Point(1185, 394);
             this.gMap.MarkersEnabled = true;
             this.gMap.MaxZoom = 18;
             this.gMap.MinZoom = 2;
@@ -622,7 +622,7 @@ namespace GroundStation
             // camera_display
             // 
             this.camera_display.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.camera_display.Location = new System.Drawing.Point(1256, 56);
+            this.camera_display.Location = new System.Drawing.Point(1185, 56);
             this.camera_display.Name = "camera_display";
             this.camera_display.Size = new System.Drawing.Size(484, 315);
             this.camera_display.TabIndex = 32;
@@ -631,7 +631,7 @@ namespace GroundStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1902, 993);
+            this.ClientSize = new System.Drawing.Size(1747, 993);
             this.Controls.Add(this.gMap);
             this.Controls.Add(this.simulation_display);
             this.Controls.Add(this.chart1);
