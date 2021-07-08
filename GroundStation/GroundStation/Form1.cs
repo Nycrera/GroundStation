@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace GroundStation
@@ -14,10 +8,12 @@ namespace GroundStation
     public partial class Form1 : Form
     {
         public Simulation simulationObject;
+        private VideoFeed videoFeed;
         public Form1()
         {
             this.FormClosed += Form1_FormClosed;
             InitializeComponent();
+            videoFeed = new VideoFeed(camera_display, this);
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -93,6 +89,21 @@ namespace GroundStation
             gMap.Overlays.Clear();
             gMap.Overlays.Add(markers);
             gMap.Update();
+        }
+
+        private void selectVidButton_Click(object sender, EventArgs e)
+        {
+            videoFeed.SelectFileSaveDir();
+        }
+
+        private void startVidButton_Click(object sender, EventArgs e)
+        {
+            videoFeed.startCapture();
+        }
+
+        private void stopVidButton_Click(object sender, EventArgs e)
+        {
+            videoFeed.stopCapture();
         }
     }
 }

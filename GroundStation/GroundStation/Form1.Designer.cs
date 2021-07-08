@@ -99,6 +99,9 @@ namespace GroundStation
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.gMap = new GMap.NET.WindowsForms.GMapControl();
             this.camera_display = new System.Windows.Forms.Panel();
+            this.selectVidButton = new System.Windows.Forms.Button();
+            this.startVidButton = new System.Windows.Forms.Button();
+            this.stopVidButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
@@ -568,7 +571,7 @@ namespace GroundStation
             // simulation_display
             // 
             this.simulation_display.BackColor = System.Drawing.SystemColors.Control;
-            this.simulation_display.Location = new System.Drawing.Point(671, 56);
+            this.simulation_display.Location = new System.Drawing.Point(671, 73);
             this.simulation_display.Name = "simulation_display";
             this.simulation_display.Size = new System.Drawing.Size(455, 315);
             this.simulation_display.TabIndex = 33;
@@ -622,16 +625,50 @@ namespace GroundStation
             // camera_display
             // 
             this.camera_display.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.camera_display.Location = new System.Drawing.Point(1185, 56);
+            this.camera_display.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.camera_display.Location = new System.Drawing.Point(1185, 73);
             this.camera_display.Name = "camera_display";
             this.camera_display.Size = new System.Drawing.Size(484, 315);
             this.camera_display.TabIndex = 32;
+            // 
+            // selectVidButton
+            // 
+            this.selectVidButton.Location = new System.Drawing.Point(1317, 37);
+            this.selectVidButton.Name = "selectVidButton";
+            this.selectVidButton.Size = new System.Drawing.Size(126, 30);
+            this.selectVidButton.TabIndex = 40;
+            this.selectVidButton.Text = "Select File";
+            this.selectVidButton.UseVisualStyleBackColor = true;
+            this.selectVidButton.Click += new System.EventHandler(this.selectVidButton_Click);
+            // 
+            // startVidButton
+            // 
+            this.startVidButton.Location = new System.Drawing.Point(1185, 37);
+            this.startVidButton.Name = "startVidButton";
+            this.startVidButton.Size = new System.Drawing.Size(126, 30);
+            this.startVidButton.TabIndex = 41;
+            this.startVidButton.Text = "Start";
+            this.startVidButton.UseVisualStyleBackColor = true;
+            this.startVidButton.Click += new System.EventHandler(this.startVidButton_Click);
+            // 
+            // stopVidButton
+            // 
+            this.stopVidButton.Location = new System.Drawing.Point(1449, 37);
+            this.stopVidButton.Name = "stopVidButton";
+            this.stopVidButton.Size = new System.Drawing.Size(126, 30);
+            this.stopVidButton.TabIndex = 42;
+            this.stopVidButton.Text = "Stop";
+            this.stopVidButton.UseVisualStyleBackColor = true;
+            this.stopVidButton.Click += new System.EventHandler(this.stopVidButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1747, 993);
+            this.Controls.Add(this.stopVidButton);
+            this.Controls.Add(this.startVidButton);
+            this.Controls.Add(this.selectVidButton);
             this.Controls.Add(this.gMap);
             this.Controls.Add(this.simulation_display);
             this.Controls.Add(this.chart1);
@@ -722,5 +759,8 @@ namespace GroundStation
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private GMap.NET.WindowsForms.GMapControl gMap;
         private System.Windows.Forms.Panel camera_display;
+        private System.Windows.Forms.Button selectVidButton;
+        private System.Windows.Forms.Button startVidButton;
+        private System.Windows.Forms.Button stopVidButton;
     }
 }

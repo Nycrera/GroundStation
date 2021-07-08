@@ -29,6 +29,7 @@ namespace GroundStation
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Debug));
             this.labelAngleZ = new System.Windows.Forms.Label();
             this.labelAngleY = new System.Windows.Forms.Label();
             this.labelAngleX = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@ namespace GroundStation
             this.xPos = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
@@ -239,11 +241,21 @@ namespace GroundStation
             this.label7.TabIndex = 66;
             this.label7.Text = "Model Angle (X,Y,Z):";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 17);
+            this.label3.TabIndex = 67;
+            this.label3.Text = "label3";
+            // 
             // Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(770, 490);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labelZPos);
@@ -264,6 +276,7 @@ namespace GroundStation
             this.Controls.Add(this.zAngle);
             this.Controls.Add(this.yAngle);
             this.Controls.Add(this.xAngle);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Debug";
             this.Text = "Debug Panel";
             this.Load += new System.EventHandler(this.Debug_Load);
@@ -300,5 +313,6 @@ namespace GroundStation
         private System.Windows.Forms.TrackBar xPos;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label3;
     }
 }
