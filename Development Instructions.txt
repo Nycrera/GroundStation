@@ -1,0 +1,5 @@
+To develop this project you will need XNA4 DevPack as well as DirectX assemblies
+to install all of these tooling follow the guide:
+https://ridilabs.net/post/2019/09/20/Installing-XNA-on-Visual-Studio-2019.aspx
+
+Since Xna is pretty outdated it might be complicated to get it working. Sorry in advance.

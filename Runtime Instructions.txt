@@ -1,0 +1,4 @@
+This program needs XNA Framework 4.0 Runtime Assemblies Installed.
+
+To install assemlies follow this link:
+https://www.microsoft.com/en-us/download/details.aspx?id=20914
