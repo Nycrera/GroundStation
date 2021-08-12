@@ -90,7 +90,6 @@ namespace GroundStation
             this.presGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.packGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.simulation_display = new System.Windows.Forms.Panel();
-            this.SerialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
@@ -102,6 +101,10 @@ namespace GroundStation
             this.selectVidButton = new System.Windows.Forms.Button();
             this.startVidButton = new System.Windows.Forms.Button();
             this.stopVidButton = new System.Windows.Forms.Button();
+            this.byteRecv = new System.Windows.Forms.Label();
+            this.PermissionTimer = new System.Windows.Forms.Timer(this.components);
+            this.byteTotal = new System.Windows.Forms.Label();
+            this.videoStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
@@ -113,6 +116,7 @@ namespace GroundStation
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Enabled = false;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.Location = new System.Drawing.Point(505, 11);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -154,6 +158,7 @@ namespace GroundStation
             this.active10SecBut.TabIndex = 19;
             this.active10SecBut.Text = "Active for 10 Sec";
             this.active10SecBut.UseVisualStyleBackColor = true;
+            this.active10SecBut.Click += new System.EventHandler(this.active10SecBut_Click);
             // 
             // activeAlBut
             // 
@@ -164,6 +169,7 @@ namespace GroundStation
             this.activeAlBut.TabIndex = 18;
             this.activeAlBut.Text = "Active Always";
             this.activeAlBut.UseVisualStyleBackColor = true;
+            this.activeAlBut.Click += new System.EventHandler(this.activeAlBut_Click);
             // 
             // releaseBut
             // 
@@ -174,9 +180,11 @@ namespace GroundStation
             this.releaseBut.TabIndex = 17;
             this.releaseBut.Text = "Send Release Command";
             this.releaseBut.UseVisualStyleBackColor = true;
+            this.releaseBut.Click += new System.EventHandler(this.releaseBut_Click);
             // 
             // startButton
             // 
+            this.startButton.Enabled = false;
             this.startButton.Location = new System.Drawing.Point(33, 56);
             this.startButton.Margin = new System.Windows.Forms.Padding(4);
             this.startButton.Name = "startButton";
@@ -184,7 +192,6 @@ namespace GroundStation
             this.startButton.TabIndex = 16;
             this.startButton.Text = "Start to Take";
             this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // dataGrid
             // 
@@ -390,7 +397,7 @@ namespace GroundStation
             // byteTrans
             // 
             this.byteTrans.AutoSize = true;
-            this.byteTrans.Location = new System.Drawing.Point(982, 692);
+            this.byteTrans.Location = new System.Drawing.Point(977, 705);
             this.byteTrans.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.byteTrans.Name = "byteTrans";
             this.byteTrans.Size = new System.Drawing.Size(127, 17);
@@ -417,6 +424,7 @@ namespace GroundStation
             this.send_video.TabIndex = 26;
             this.send_video.Text = "Send Vid";
             this.send_video.UseVisualStyleBackColor = true;
+            this.send_video.Click += new System.EventHandler(this.send_video_Click);
             // 
             // statusLabel
             // 
@@ -443,6 +451,7 @@ namespace GroundStation
             // 
             // portCombo
             // 
+            this.portCombo.Enabled = false;
             this.portCombo.FormattingEnabled = true;
             this.portCombo.Location = new System.Drawing.Point(671, 13);
             this.portCombo.Margin = new System.Windows.Forms.Padding(4);
@@ -661,11 +670,44 @@ namespace GroundStation
             this.stopVidButton.UseVisualStyleBackColor = true;
             this.stopVidButton.Click += new System.EventHandler(this.stopVidButton_Click);
             // 
+            // byteRecv
+            // 
+            this.byteRecv.AutoSize = true;
+            this.byteRecv.Location = new System.Drawing.Point(977, 728);
+            this.byteRecv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.byteRecv.Name = "byteRecv";
+            this.byteRecv.Size = new System.Drawing.Size(111, 17);
+            this.byteRecv.TabIndex = 43;
+            this.byteRecv.Text = "0 Byte Received";
+            // 
+            // byteTotal
+            // 
+            this.byteTotal.AutoSize = true;
+            this.byteTotal.Location = new System.Drawing.Point(960, 678);
+            this.byteTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.byteTotal.Name = "byteTotal";
+            this.byteTotal.Size = new System.Drawing.Size(159, 17);
+            this.byteTotal.TabIndex = 44;
+            this.byteTotal.Text = "PACKAGE GOES HERE";
+            // 
+            // videoStatus
+            // 
+            this.videoStatus.AutoSize = true;
+            this.videoStatus.Location = new System.Drawing.Point(998, 533);
+            this.videoStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.videoStatus.Name = "videoStatus";
+            this.videoStatus.Size = new System.Drawing.Size(90, 17);
+            this.videoStatus.TabIndex = 45;
+            this.videoStatus.Text = "Status: None";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1747, 993);
+            this.Controls.Add(this.videoStatus);
+            this.Controls.Add(this.byteTotal);
+            this.Controls.Add(this.byteRecv);
             this.Controls.Add(this.stopVidButton);
             this.Controls.Add(this.startVidButton);
             this.Controls.Add(this.selectVidButton);
@@ -697,7 +739,7 @@ namespace GroundStation
             this.Name = "Form1";
             this.Text = "SwifTurk Ground Station";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load_1);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).EndInit();
@@ -750,7 +792,6 @@ namespace GroundStation
         public System.Windows.Forms.DataVisualization.Charting.Chart presGraph;
         public System.Windows.Forms.DataVisualization.Charting.Chart packGraph;
         private System.Windows.Forms.Panel simulation_display;
-        public System.IO.Ports.SerialPort SerialPort1;
         private System.Windows.Forms.Timer timer1;
         public System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
@@ -762,5 +803,9 @@ namespace GroundStation
         private System.Windows.Forms.Button selectVidButton;
         private System.Windows.Forms.Button startVidButton;
         private System.Windows.Forms.Button stopVidButton;
+        private System.Windows.Forms.Label byteRecv;
+        private System.Windows.Forms.Timer PermissionTimer;
+        private System.Windows.Forms.Label byteTotal;
+        private System.Windows.Forms.Label videoStatus;
     }
 }

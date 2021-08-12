@@ -9,11 +9,13 @@ namespace GroundStation
     {
         public Simulation simulationObject;
         private VideoFeed videoFeed;
+        private Mavlink mavlink;
         public Form1()
         {
             this.FormClosed += Form1_FormClosed;
             InitializeComponent();
             videoFeed = new VideoFeed(camera_display, this);
+            mavlink = new Mavlink(this, portCombo,byteRecv,byteTrans,PermissionTimer,byteTotal,videoStatus);
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -36,6 +38,7 @@ namespace GroundStation
                 {
                     string text = File.ReadAllText(file);
                     size = text.Length;
+                    mavlink.SetVideoData(size,text);
                 }
                 catch (IOException)
                 {
@@ -47,28 +50,12 @@ namespace GroundStation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SerialPort1.PortName = portCombo.Text;
-            //SerialPort1.BaudRate = 9600;
-            SerialPort1.BaudRate = 115200;
-            SerialPort1.ReadBufferSize = SerialPort1.ReadBufferSize + 4096;
-            SerialPort1.WriteBufferSize = SerialPort1.WriteBufferSize + 4096;
-            SerialPort1.Open();
-
+            mavlink.Connect_Event(sender,e);
             connectionLabel.BackColor = Color.Green;
             connectionLabel.Text = "Connected";
         }
 
-        private void startButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load_1(object sender, EventArgs e)
         {
             gMap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
@@ -104,6 +91,26 @@ namespace GroundStation
         private void stopVidButton_Click(object sender, EventArgs e)
         {
             videoFeed.stopCapture();
+        }
+
+        private void activeAlBut_Click(object sender, EventArgs e)
+        {
+            mavlink.Manual_Motor_Always_Click(sender, e);
+        }
+
+        private void active10SecBut_Click(object sender, EventArgs e)
+        {
+            mavlink.TenSecond_Active_Click(sender, e);
+        }
+
+        private void releaseBut_Click(object sender, EventArgs e)
+        {
+            mavlink.Manual_Release_Click(sender, e);
+        }
+
+        private void send_video_Click(object sender, EventArgs e)
+        {
+            mavlink.SEND_VIDEO_Click(sender, e);
         }
     }
 }
