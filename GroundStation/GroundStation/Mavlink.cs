@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -55,7 +54,7 @@ namespace GroundStation
         private Label TOTAL_PACK;
         private Label TRANSFER_STATUS;
 
-        public Mavlink(Form mainForm, ComboBox PortLists, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
+        public Mavlink(Form mainForm, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
             Timer PermissionTimer, Label TOTAL_PACK, Label TRANSFER_STATUS)
         {
             this.TOTAL_PACK = TOTAL_PACK;
@@ -66,11 +65,6 @@ namespace GroundStation
             this.PermissionTimer = PermissionTimer;
 
             Console.WriteLine(VIDEO_SIZE);
-            /*string[] ports = SerialPort.GetPortNames();
-            foreach (string port in ports)
-            {
-                PortLists.Items.Add(port);
-            }*/ // We don't use this anymore. Keeping it for first commit. If you read this, remove pls.
             SENDED_BYTE_LABEL.Text = SENDED_BYTE.ToString() + " Byte Transferred";
             REACHED_VIDEO_LABEL.Text = REACHED_BYTE.ToString() + " Byte Received";
             TextBox.CheckForIllegalCrossThreadCalls = false;

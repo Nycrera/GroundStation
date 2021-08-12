@@ -51,7 +51,6 @@ namespace GroundStation
             System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.connectionLabel = new System.Windows.Forms.Label();
             this.active10SecBut = new System.Windows.Forms.Button();
@@ -83,7 +82,6 @@ namespace GroundStation
             this.send_video = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.portCombo = new System.Windows.Forms.ComboBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.altGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tempGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -112,18 +110,6 @@ namespace GroundStation
             ((System.ComponentModel.ISupportInitialize)(this.presGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.packGraph)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Enabled = false;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(505, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 24);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Available Ports:";
             // 
             // label4
             // 
@@ -406,7 +392,7 @@ namespace GroundStation
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(871, 13);
+            this.button1.Location = new System.Drawing.Point(786, 13);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 28);
@@ -448,16 +434,6 @@ namespace GroundStation
             this.label1.Size = new System.Drawing.Size(159, 25);
             this.label1.TabIndex = 24;
             this.label1.Text = "Satelleite Status:";
-            // 
-            // portCombo
-            // 
-            this.portCombo.Enabled = false;
-            this.portCombo.FormattingEnabled = true;
-            this.portCombo.Location = new System.Drawing.Point(671, 13);
-            this.portCombo.Margin = new System.Windows.Forms.Padding(4);
-            this.portCombo.Name = "portCombo";
-            this.portCombo.Size = new System.Drawing.Size(192, 24);
-            this.portCombo.TabIndex = 31;
             // 
             // chart1
             // 
@@ -719,7 +695,6 @@ namespace GroundStation
             this.Controls.Add(this.presGraph);
             this.Controls.Add(this.packGraph);
             this.Controls.Add(this.camera_display);
-            this.Controls.Add(this.portCombo);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.slct_file);
             this.Controls.Add(this.byteTrans);
@@ -728,7 +703,6 @@ namespace GroundStation
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGrid);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.connectionLabel);
             this.Controls.Add(this.active10SecBut);
@@ -752,8 +726,6 @@ namespace GroundStation
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label connectionLabel;
         private System.Windows.Forms.Button active10SecBut;
@@ -785,7 +757,6 @@ namespace GroundStation
         private System.Windows.Forms.Button send_video;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox portCombo;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         public System.Windows.Forms.DataVisualization.Charting.Chart altGraph;
         public System.Windows.Forms.DataVisualization.Charting.Chart tempGraph;

@@ -15,7 +15,7 @@ namespace GroundStation
             this.FormClosed += Form1_FormClosed;
             InitializeComponent();
             videoFeed = new VideoFeed(camera_display, this);
-            mavlink = new Mavlink(this, portCombo,byteRecv,byteTrans,PermissionTimer,byteTotal,videoStatus);
+            mavlink = new Mavlink(this,byteRecv,byteTrans,PermissionTimer,byteTotal,videoStatus);
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
