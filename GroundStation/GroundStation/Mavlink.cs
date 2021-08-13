@@ -57,12 +57,12 @@ namespace GroundStation
         public Mavlink(Form mainForm, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
             Timer PermissionTimer, Label TOTAL_PACK, Label TRANSFER_STATUS)
         {
-            this.TOTAL_PACK = TOTAL_PACK;
-            this.TRANSFER_STATUS = TRANSFER_STATUS;
             this.mainForm = mainForm;
             this.SENDED_BYTE_LABEL = SENDED_BYTE_LABEL;
             this.REACHED_VIDEO_LABEL = REACHED_VIDEO_LABEL;
             this.PermissionTimer = PermissionTimer;
+            this.TOTAL_PACK = TOTAL_PACK;
+            this.TRANSFER_STATUS = TRANSFER_STATUS;
 
             Console.WriteLine(VIDEO_SIZE);
             SENDED_BYTE_LABEL.Text = SENDED_BYTE.ToString() + " Byte Transferred";
