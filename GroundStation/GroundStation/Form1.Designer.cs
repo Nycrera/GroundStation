@@ -75,7 +75,7 @@ namespace GroundStation
             this.YAW = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TURN_NUM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VID_SAVED = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
+            this.exportBtn = new System.Windows.Forms.Button();
             this.slct_file = new System.Windows.Forms.Button();
             this.byteTrans = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -359,14 +359,15 @@ namespace GroundStation
             this.VID_SAVED.Name = "VID_SAVED";
             this.VID_SAVED.ReadOnly = true;
             // 
-            // button3
+            // exportBtn
             // 
-            this.button3.Location = new System.Drawing.Point(1594, 715);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 42);
-            this.button3.TabIndex = 30;
-            this.button3.Text = "Export Data";
-            this.button3.UseVisualStyleBackColor = true;
+            this.exportBtn.Location = new System.Drawing.Point(1594, 715);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(146, 42);
+            this.exportBtn.TabIndex = 30;
+            this.exportBtn.Text = "Export Data";
+            this.exportBtn.UseVisualStyleBackColor = true;
+            this.exportBtn.Click += new System.EventHandler(this.exportBtn_Click);
             // 
             // slct_file
             // 
@@ -693,7 +694,7 @@ namespace GroundStation
             this.Controls.Add(this.presGraph);
             this.Controls.Add(this.packGraph);
             this.Controls.Add(this.camera_display);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.exportBtn);
             this.Controls.Add(this.slct_file);
             this.Controls.Add(this.byteTrans);
             this.Controls.Add(this.button1);
@@ -748,7 +749,7 @@ namespace GroundStation
         private System.Windows.Forms.DataGridViewTextBoxColumn YAW;
         private System.Windows.Forms.DataGridViewTextBoxColumn TURN_NUM;
         private System.Windows.Forms.DataGridViewTextBoxColumn VID_SAVED;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button exportBtn;
         private System.Windows.Forms.Button slct_file;
         private System.Windows.Forms.Label byteTrans;
         private System.Windows.Forms.Button button1;
