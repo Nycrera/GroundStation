@@ -183,8 +183,6 @@ namespace GroundStation
             // 
             this.dataGrid.AllowUserToAddRows = false;
             this.dataGrid.AllowUserToDeleteRows = false;
-            this.dataGrid.AllowUserToResizeColumns = false;
-            this.dataGrid.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -669,12 +667,12 @@ namespace GroundStation
             // videoStatus
             // 
             this.videoStatus.AutoSize = true;
-            this.videoStatus.Location = new System.Drawing.Point(998, 533);
+            this.videoStatus.Location = new System.Drawing.Point(974, 532);
             this.videoStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.videoStatus.Name = "videoStatus";
-            this.videoStatus.Size = new System.Drawing.Size(90, 17);
+            this.videoStatus.Size = new System.Drawing.Size(114, 17);
             this.videoStatus.TabIndex = 45;
-            this.videoStatus.Text = "Status: None";
+            this.videoStatus.Text = "Vid Status: None";
             // 
             // Form1
             // 
