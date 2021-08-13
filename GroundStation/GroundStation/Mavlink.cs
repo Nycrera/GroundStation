@@ -54,10 +54,13 @@ namespace GroundStation
         private Label TOTAL_PACK;
         private Label TRANSFER_STATUS;
 
-        public Mavlink(Form mainForm, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
+        Action UpdateDataCallback;
+
+        public Mavlink(Form mainForm, Action UpdateDataCallback, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
             Timer PermissionTimer, Label TOTAL_PACK, Label TRANSFER_STATUS)
         {
             this.mainForm = mainForm;
+            this.UpdateDataCallback = UpdateDataCallback;
             this.SENDED_BYTE_LABEL = SENDED_BYTE_LABEL;
             this.REACHED_VIDEO_LABEL = REACHED_VIDEO_LABEL;
             this.PermissionTimer = PermissionTimer;
@@ -261,6 +264,7 @@ namespace GroundStation
 
                     }
                 }
+                UpdateDataCallback(); // Ping the main form so that it can update itself with the new arrived data , the public Splitted_Telemetry[].
             }
 
 
