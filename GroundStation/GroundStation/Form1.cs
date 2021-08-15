@@ -12,12 +12,15 @@ namespace GroundStation
         private Mavlink mavlink;
         private DateTime FirstTelemetryTime;
         private bool didOperationBegin = false;
+        public string[] data; // Newly
         public Form1()
         {
+            
             this.FormClosed += Form1_FormClosed;
             InitializeComponent();
             videoFeed = new VideoFeed(camera_display, this);
             mavlink = new Mavlink(this,UpdateData,byteRecv,byteTrans,PermissionTimer,byteTotal,videoStatus);
+            this.PermissionTimer.Tick += new System.EventHandler(mavlink.Permission_OVER_EVENT); // Added Manually After Check
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -70,21 +73,24 @@ namespace GroundStation
         {
             GMap.NET.WindowsForms.GMapOverlay markers = new GMap.NET.WindowsForms.GMapOverlay("markers");
             GMap.NET.WindowsForms.GMapMarker marker =
-    new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
-        new GMap.NET.PointLatLng(lat, lng),
-        GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
-            markers.Markers.Add(marker);
+            new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
+            new GMap.NET.PointLatLng(lat, lng),
+            GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
+                markers.Markers.Add(marker);
 
             gMap.Overlays.Clear();
             gMap.Overlays.Add(markers);
             gMap.Update();
         }
 
-        private void UpdateData()
+        public void UpdateData(object sender, EventArgs e)
         {
             // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5->status, 6->pitch, 7->roll, 8->yaw, 9->turn_number, 10->vid_info  // (subject to change)
-            string[] data = mavlink.Splitted_Telemetry;
-            InsertDataRow(data);
+            // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5-> BATTERY_VOLT,6 ->status, 7 ->pitch, 8->roll, 9->yaw, 10->turn_number, 11->vid_info  // (subject to change)
+            //string[] data = mavlink.Splitted_Telemetry;
+            data = mavlink.Splitted_Telemetry;
+            this.Invoke(new EventHandler(InsertDataRow));
+            //InsertDataRow(data);
 
             // USE INCOMING DATA HERE
             if (!didOperationBegin) //Means that this is our first package, therefore initalize the begin time.
@@ -92,23 +98,26 @@ namespace GroundStation
                 FirstTelemetryTime = DateTime.Now;
                 didOperationBegin = true; // I don't like using flags but anyways :S
             }
-            double operationTime = Math.Round((FirstTelemetryTime - DateTime.Now).TotalSeconds,2); // I did round to 2 decimal places. Idk how this would look.
+            double operationTime = Math.Round((DateTime.Now - FirstTelemetryTime).TotalSeconds,2); // I did round to 2 decimal places. Idk how this would look.
             packGraph.Series[0].Points.AddXY(operationTime, Int32.Parse(data[1]));
             presGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[2]));
             altGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[3]));
             tempGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[4]));
-            statusLabel.Text = data[5];
-            simulationObject.angleX = float.Parse(data[6]);
-            simulationObject.angleY = float.Parse(data[7]);
-            simulationObject.angleZ = float.Parse(data[8]);
+            voltageGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[5]));
+            statusLabel.Text = data[6];
+            simulationObject.angleX = float.Parse(data[7]);
+            simulationObject.angleY = float.Parse(data[8]);
+            simulationObject.angleZ = float.Parse(data[9]);
             
         }
 
-        private void InsertDataRow(string[] data)
+        private void InsertDataRow(object sender , EventArgs e ) // string[] data
         {
             // This restructing could be removed when the package is in order when got from mavlink.
             // I just filled unknown data with ??
-            string[] NewRow = { data[0], data[1], "??", data[2], data[3], "??", data[4], "??", "??", "??", "??", data[5], data[6], data[7], data[8], data[9], data[10]};
+
+            
+            string[] NewRow = { data[0], data[1], DateTime.Now.ToString(), data[2], data[3], "0" , data[4], data[5], "41.007848569582244", "28.98043706315273x", data[3], data[6], data[7], data[8], data[9], data[10], data[11]};
             dataGrid.Rows.Add(NewRow);
         }
 
@@ -179,5 +188,7 @@ namespace GroundStation
             // save the application  
             workbook.SaveAs(Path.Combine(Directory.GetCurrentDirectory(), "export-"+ DateTime.Now.ToString("yyyy-dd-M--HH-mm-ss") + ".xls"), Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
         }
+
+        
     }
 }

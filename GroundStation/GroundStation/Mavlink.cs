@@ -54,11 +54,14 @@ namespace GroundStation
         private Label TOTAL_PACK;
         private Label TRANSFER_STATUS;
 
-        Action UpdateDataCallback;
+        
 
-        public Mavlink(Form mainForm, Action UpdateDataCallback, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
+        EventHandler UpdateDataCallback;
+
+        public Mavlink(Form mainForm, EventHandler UpdateDataCallback, Label SENDED_BYTE_LABEL, Label REACHED_VIDEO_LABEL,
             Timer PermissionTimer, Label TOTAL_PACK, Label TRANSFER_STATUS)
         {
+            TextBox.CheckForIllegalCrossThreadCalls = false;
             this.mainForm = mainForm;
             this.UpdateDataCallback = UpdateDataCallback;
             this.SENDED_BYTE_LABEL = SENDED_BYTE_LABEL;
@@ -70,7 +73,7 @@ namespace GroundStation
             Console.WriteLine(VIDEO_SIZE);
             SENDED_BYTE_LABEL.Text = SENDED_BYTE.ToString() + " Byte Transferred";
             REACHED_VIDEO_LABEL.Text = REACHED_BYTE.ToString() + " Byte Received";
-            TextBox.CheckForIllegalCrossThreadCalls = false;
+            
         }
 
         public void SetVideoData(int size, string data)
@@ -223,8 +226,9 @@ namespace GroundStation
         {
             //ReceivedStringSAVED = ReceivedString; // WE COPIED IT. (Another Event can be trigger Thats why.)
             //string[] Splitted_Telemetry = ReceivedStringSAVED.Split(',');
-            if (Splitted_Telemetry.Length != 11)
+            if (Splitted_Telemetry.Length != 12)
             {
+                Console.WriteLine("MISISNG_TEL??");
                 MissingTelemetry = true;
                 //COMMAND_QUEUE_REQUEST();
                 mainForm.Invoke(new EventHandler(COMMAND_QUEUE_REQUEST));
@@ -264,7 +268,8 @@ namespace GroundStation
 
                     }
                 }
-                UpdateDataCallback(); // Ping the main form so that it can update itself with the new arrived data , the public Splitted_Telemetry[].
+                //UpdateDataCallback(); // Ping the main form so that it can update itself with the new arrived data , the public Splitted_Telemetry[].
+                mainForm.Invoke(new EventHandler(UpdateDataCallback));
             }
 
 
