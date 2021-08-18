@@ -715,7 +715,7 @@ namespace GroundStation
 
         #endregion
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label connectionLabel;
+        public System.Windows.Forms.Label connectionLabel;
         private System.Windows.Forms.Button active10SecBut;
         private System.Windows.Forms.Button activeAlBut;
         private System.Windows.Forms.Button releaseBut;

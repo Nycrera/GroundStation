@@ -9,7 +9,7 @@ namespace GroundStation
     {
         public Simulation simulationObject;
         private VideoFeed videoFeed;
-        private Mavlink mavlink;
+        public Mavlink mavlink;
         private DateTime FirstTelemetryTime;
         private bool didOperationBegin = false;
         public string[] data; // Newly

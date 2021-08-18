@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GroundStation
 {
-    class Mavlink
+    public class Mavlink
     {
         public String ReceivedString;
         //public String ReceivedStringSAVED;
