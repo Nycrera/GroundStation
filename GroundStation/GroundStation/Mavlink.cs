@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GroundStation
@@ -141,7 +142,7 @@ namespace GroundStation
                     }
                     //VIDEO_SEND_PROCESSING(); // IF SENDED OR NOT, DOESNT MATTER , GO TO THE FUNCTION,
                     // IF VS SENDED SEND VBINARY , IF NOT , SEND VS AGAIN.
-                    mainForm.Invoke(new EventHandler(VIDEO_SEND_PROCESSING));
+                    VIDEO_SEND_PROCESSING();
                     //VIDEO_SEND_PROCESSING();
                 }
                 else if (splitted_STR[0].ToString() == "V")
@@ -184,7 +185,7 @@ namespace GroundStation
                         // AYNI VIDEO BYTE OLMUS OLACAK.
                         //System.Threading.Thread.Sleep(5);
                         //VIDEO_SEND_PROCESSING();
-                        mainForm.Invoke(new EventHandler(VIDEO_SEND_PROCESSING));
+                        VIDEO_SEND_PROCESSING();
                     }
                 }
                 //CLIENT.BeginReceive(new AsyncCallback(DataRECV_EVENT), null);
@@ -231,7 +232,7 @@ namespace GroundStation
                 Console.WriteLine("MISISNG_TEL??");
                 MissingTelemetry = true;
                 //COMMAND_QUEUE_REQUEST();
-                mainForm.Invoke(new EventHandler(COMMAND_QUEUE_REQUEST));
+                COMMAND_QUEUE_REQUEST();
                 //COMMAND_QUEUE.Remove(COMMAND_QUEUE.ElementAt(0));
                 if (SENDING_PERMISSION)
                 {
@@ -249,14 +250,14 @@ namespace GroundStation
                 {
                     Console.WriteLine("Videos IDENTIFIED ..");
                     //VIDEO_SEND_PROCESSING();
-                    mainForm.Invoke(new EventHandler(VIDEO_SEND_PROCESSING));
+                    VIDEO_SEND_PROCESSING();
                 }
                 else
                 {
                     if (SENDING_PERMISSION)
                     {
                         //COMMAND_QUEUE_REQUEST();
-                        mainForm.Invoke(new EventHandler(COMMAND_QUEUE_REQUEST));
+                        COMMAND_QUEUE_REQUEST();
                         if (COMMAND_QUEUE.Count > 0)
                         {
                             COMMAND_QUEUE.Remove(COMMAND_QUEUE.ElementAt(0));
@@ -280,7 +281,7 @@ namespace GroundStation
             COMMAND_QUEUE.Add("99");
         }
 
-        public void COMMAND_QUEUE_REQUEST(object sender, EventArgs e) // NO EVENT INTHERE NORMALLY.
+        private void COMMAND_QUEUE_REQUEST()
         {
             if (COMMAND_QUEUE.Count() == 0)
             {
@@ -307,47 +308,51 @@ namespace GroundStation
         {
             VIDEO_SENDING_ACTIVE = true;
             //VIDEO_SEND_PROCESSING();
-            mainForm.Invoke(new EventHandler(VIDEO_SEND_PROCESSING));
+            VIDEO_SEND_PROCESSING();
             //VIDEO_SEND_PROCESSING();
         }
-        public void VIDEO_SEND_PROCESSING(object sender, EventArgs e) // object sender, EventArgs e
+
+        public Task VIDEO_SEND_PROCESSING() // object sender, EventArgs e
         {
-            //COMMAND_QUEUE_REQUEST();
-            mainForm.Invoke(new EventHandler(COMMAND_QUEUE_REQUEST));
-
-            if (COMMAND_QUEUE.Count > 0)
+            return Task.Factory.StartNew(() =>
             {
-                COMMAND_QUEUE.Remove(COMMAND_QUEUE.ElementAt(0));
-            }
-            //serialPort1.DiscardOutBuffer();
-            if (!VIDEO_SIZE_SENDED && SENDING_PERMISSION)
-            {
+                //COMMAND_QUEUE_REQUEST();
+                COMMAND_QUEUE_REQUEST();
 
-                Console.WriteLine($"VS {COMMAND} {VIDEO_SIZE.ToString().Length} {VIDEO_SIZE}");
-                byte[] SENDED = Encoding.ASCII.GetBytes($"VS {COMMAND} {VIDEO_SIZE.ToString().Length} {VIDEO_SIZE}");
-                CLIENT.Send(SENDED, SENDED.Length, RemoteIpEndPoint);
-            }
-            else
-            {
-
-                if (!VIDEO_SENDING_COMPLETED && SENDING_PERMISSION && VIDEO_SENDING_ACTIVE) //VIDEO_SENDING_ACTIVE ADDED.
+                if (COMMAND_QUEUE.Count > 0)
+                {
+                    COMMAND_QUEUE.Remove(COMMAND_QUEUE.ElementAt(0));
+                }
+                //serialPort1.DiscardOutBuffer();
+                if (!VIDEO_SIZE_SENDED && SENDING_PERMISSION)
                 {
 
-                    Console.WriteLine($"V {COMMAND} {VIDEO_BYTE.Length} {VIDEO_BYTE}");
-                    //serialPort1.Write($"<V {COMMAND} {VIDEO_BYTE.Length} {VIDEO_BYTE}>");
-                    byte[] SENDED = Encoding.ASCII.GetBytes($"V {COMMAND} {VIDEO_BYTE.Length} {VIDEO_BYTE}");
+                    Console.WriteLine($"VS {COMMAND} {VIDEO_SIZE.ToString().Length} {VIDEO_SIZE}");
+                    byte[] SENDED = Encoding.ASCII.GetBytes($"VS {COMMAND} {VIDEO_SIZE.ToString().Length} {VIDEO_SIZE}");
                     CLIENT.Send(SENDED, SENDED.Length, RemoteIpEndPoint);
-                    //serialPort1.Write(CHAR_ARRAY, 0, CHAR_ARRAY.Length);
-
-                    //for (int i = 0; i < 50; i++)
-                    //{
-                    //    serialPort1.Write("1");
-                    //}
-                    //serialPort1.Write(">");
-                    SENDED_BYTE += VIDEO_BYTE.Length;
-                    SENDED_BYTE_LABEL.Text = SENDED_BYTE.ToString() + " Byte Transferred";
                 }
-            }
+                else
+                {
+
+                    if (!VIDEO_SENDING_COMPLETED && SENDING_PERMISSION && VIDEO_SENDING_ACTIVE) //VIDEO_SENDING_ACTIVE ADDED.
+                    {
+
+                        Console.WriteLine($"V {COMMAND} {VIDEO_BYTE.Length} {VIDEO_BYTE}");
+                        //serialPort1.Write($"<V {COMMAND} {VIDEO_BYTE.Length} {VIDEO_BYTE}>");
+                        byte[] SENDED = Encoding.ASCII.GetBytes($"V {COMMAND} {VIDEO_BYTE.Length} {VIDEO_BYTE}");
+                        CLIENT.Send(SENDED, SENDED.Length, RemoteIpEndPoint);
+                        //serialPort1.Write(CHAR_ARRAY, 0, CHAR_ARRAY.Length);
+
+                        //for (int i = 0; i < 50; i++)
+                        //{
+                        //    serialPort1.Write("1");
+                        //}
+                        //serialPort1.Write(">");
+                        SENDED_BYTE += VIDEO_BYTE.Length;
+                        SENDED_BYTE_LABEL.Text = SENDED_BYTE.ToString() + " Byte Transferred";
+                    }
+                }
+            });
         }
 
         public void Permission_OVER_EVENT(object sender, EventArgs e)
