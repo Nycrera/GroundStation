@@ -14,7 +14,8 @@ namespace GroundStation
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Model model;
-        public float angleX = 90;
+        public float modAngleX = 0, modAngleY = 0, modAngleZ = 0;
+        public float angleX = 0;
         public float angleY = 0;
         public float angleZ = 0;
         public Vector3 position = new Vector3(0, -45, 0); // POSITION MATRIX Y AXS MAKED 45 TO SEE IN THE MIDDLE SATELLEITE.
@@ -102,7 +103,7 @@ namespace GroundStation
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            positionMatrix = Matrix.CreateRotationX((float)(Math.PI * angleX / 180.0)) * Matrix.CreateRotationY((float)(Math.PI * angleY / 180.0)) * Matrix.CreateRotationZ((float)(Math.PI * angleZ / 180.0)) * Matrix.CreateTranslation(position);
+            positionMatrix = Matrix.CreateRotationX((float)(Math.PI * (angleX+modAngleX) / 180.0)) * Matrix.CreateRotationY((float)(Math.PI * (angleY+modAngleY) / 180.0)) * Matrix.CreateRotationZ((float)(Math.PI * (angleZ+modAngleZ) / 180.0)) * Matrix.CreateTranslation(position);
             
             DrawModel(model, positionMatrix, view, projection);
 

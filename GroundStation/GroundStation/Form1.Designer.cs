@@ -50,6 +50,9 @@ namespace GroundStation
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label4 = new System.Windows.Forms.Label();
             this.connectionLabel = new System.Windows.Forms.Label();
@@ -103,21 +106,24 @@ namespace GroundStation
             this.PermissionTimer = new System.Windows.Forms.Timer(this.components);
             this.byteTotal = new System.Windows.Forms.Label();
             this.videoStatus = new System.Windows.Forms.Label();
+            this.descSpeedGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.voltageGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tempGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.presGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.packGraph)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.descSpeedGraph)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(10, 7);
+            this.label4.Location = new System.Drawing.Point(12, 9);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 20);
+            this.label4.Size = new System.Drawing.Size(179, 25);
             this.label4.TabIndex = 21;
             this.label4.Text = "Connection Status:";
             // 
@@ -126,18 +132,20 @@ namespace GroundStation
             this.connectionLabel.AutoSize = true;
             this.connectionLabel.BackColor = System.Drawing.Color.Red;
             this.connectionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.connectionLabel.Location = new System.Drawing.Point(171, 7);
+            this.connectionLabel.Location = new System.Drawing.Point(214, 9);
+            this.connectionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.connectionLabel.Name = "connectionLabel";
-            this.connectionLabel.Size = new System.Drawing.Size(129, 20);
+            this.connectionLabel.Size = new System.Drawing.Size(156, 25);
             this.connectionLabel.TabIndex = 20;
             this.connectionLabel.Text = "Not Connected";
             this.connectionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // active10SecBut
             // 
-            this.active10SecBut.Location = new System.Drawing.Point(212, 102);
+            this.active10SecBut.Location = new System.Drawing.Point(265, 128);
+            this.active10SecBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.active10SecBut.Name = "active10SecBut";
-            this.active10SecBut.Size = new System.Drawing.Size(179, 50);
+            this.active10SecBut.Size = new System.Drawing.Size(224, 62);
             this.active10SecBut.TabIndex = 19;
             this.active10SecBut.Text = "Active for 10 Sec";
             this.active10SecBut.UseVisualStyleBackColor = true;
@@ -145,9 +153,10 @@ namespace GroundStation
             // 
             // activeAlBut
             // 
-            this.activeAlBut.Location = new System.Drawing.Point(212, 45);
+            this.activeAlBut.Location = new System.Drawing.Point(265, 56);
+            this.activeAlBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.activeAlBut.Name = "activeAlBut";
-            this.activeAlBut.Size = new System.Drawing.Size(179, 50);
+            this.activeAlBut.Size = new System.Drawing.Size(224, 62);
             this.activeAlBut.TabIndex = 18;
             this.activeAlBut.Text = "Active Always";
             this.activeAlBut.UseVisualStyleBackColor = true;
@@ -155,9 +164,10 @@ namespace GroundStation
             // 
             // releaseBut
             // 
-            this.releaseBut.Location = new System.Drawing.Point(26, 102);
+            this.releaseBut.Location = new System.Drawing.Point(32, 128);
+            this.releaseBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.releaseBut.Name = "releaseBut";
-            this.releaseBut.Size = new System.Drawing.Size(179, 50);
+            this.releaseBut.Size = new System.Drawing.Size(224, 62);
             this.releaseBut.TabIndex = 17;
             this.releaseBut.Text = "Send Release Command";
             this.releaseBut.UseVisualStyleBackColor = true;
@@ -166,9 +176,10 @@ namespace GroundStation
             // startButton
             // 
             this.startButton.Enabled = false;
-            this.startButton.Location = new System.Drawing.Point(26, 45);
+            this.startButton.Location = new System.Drawing.Point(32, 56);
+            this.startButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(179, 50);
+            this.startButton.Size = new System.Drawing.Size(224, 62);
             this.startButton.TabIndex = 16;
             this.startButton.Text = "Start to Take";
             this.startButton.UseVisualStyleBackColor = true;
@@ -216,7 +227,8 @@ namespace GroundStation
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGrid.Location = new System.Drawing.Point(10, 609);
+            this.dataGrid.Location = new System.Drawing.Point(12, 761);
+            this.dataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -230,7 +242,7 @@ namespace GroundStation
             this.dataGrid.RowHeadersWidth = 51;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGrid.Size = new System.Drawing.Size(1382, 175);
+            this.dataGrid.Size = new System.Drawing.Size(1907, 219);
             this.dataGrid.TabIndex = 23;
             // 
             // TEAM_ID
@@ -354,10 +366,10 @@ namespace GroundStation
             // 
             // exportBtn
             // 
-            this.exportBtn.Location = new System.Drawing.Point(1275, 572);
+            this.exportBtn.Location = new System.Drawing.Point(1767, 715);
             this.exportBtn.Margin = new System.Windows.Forms.Padding(2);
             this.exportBtn.Name = "exportBtn";
-            this.exportBtn.Size = new System.Drawing.Size(117, 34);
+            this.exportBtn.Size = new System.Drawing.Size(146, 42);
             this.exportBtn.TabIndex = 30;
             this.exportBtn.Text = "Export Data";
             this.exportBtn.UseVisualStyleBackColor = true;
@@ -365,10 +377,10 @@ namespace GroundStation
             // 
             // slct_file
             // 
-            this.slct_file.Location = new System.Drawing.Point(770, 450);
+            this.slct_file.Location = new System.Drawing.Point(1087, 538);
             this.slct_file.Margin = new System.Windows.Forms.Padding(2);
             this.slct_file.Name = "slct_file";
-            this.slct_file.Size = new System.Drawing.Size(117, 34);
+            this.slct_file.Size = new System.Drawing.Size(146, 42);
             this.slct_file.TabIndex = 29;
             this.slct_file.Text = "Select File";
             this.slct_file.UseVisualStyleBackColor = true;
@@ -377,17 +389,19 @@ namespace GroundStation
             // byteTrans
             // 
             this.byteTrans.AutoSize = true;
-            this.byteTrans.Location = new System.Drawing.Point(782, 564);
+            this.byteTrans.Location = new System.Drawing.Point(1103, 681);
+            this.byteTrans.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.byteTrans.Name = "byteTrans";
-            this.byteTrans.Size = new System.Drawing.Size(94, 13);
+            this.byteTrans.Size = new System.Drawing.Size(127, 17);
             this.byteTrans.TabIndex = 28;
             this.byteTrans.Text = "0 Byte Transferred";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(629, 10);
+            this.button1.Location = new System.Drawing.Point(1030, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 22);
+            this.button1.Size = new System.Drawing.Size(142, 28);
             this.button1.TabIndex = 27;
             this.button1.Text = "Connect";
             this.button1.UseVisualStyleBackColor = true;
@@ -395,9 +409,10 @@ namespace GroundStation
             // 
             // send_video
             // 
-            this.send_video.Location = new System.Drawing.Point(741, 489);
+            this.send_video.Location = new System.Drawing.Point(1051, 587);
+            this.send_video.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.send_video.Name = "send_video";
-            this.send_video.Size = new System.Drawing.Size(179, 50);
+            this.send_video.Size = new System.Drawing.Size(224, 62);
             this.send_video.TabIndex = 26;
             this.send_video.Text = "Send Vid";
             this.send_video.UseVisualStyleBackColor = true;
@@ -407,9 +422,10 @@ namespace GroundStation
             // 
             this.statusLabel.AutoSize = true;
             this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.statusLabel.Location = new System.Drawing.Point(1230, 7);
+            this.statusLabel.Location = new System.Drawing.Point(1782, 11);
+            this.statusLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(79, 20);
+            this.statusLabel.Size = new System.Drawing.Size(97, 25);
             this.statusLabel.TabIndex = 25;
             this.statusLabel.Text = "Waiting..";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -418,9 +434,10 @@ namespace GroundStation
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(1085, 7);
+            this.label1.Location = new System.Drawing.Point(1600, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 20);
+            this.label1.Size = new System.Drawing.Size(159, 25);
             this.label1.TabIndex = 24;
             this.label1.Text = "Satelleite Status:";
             // 
@@ -434,7 +451,8 @@ namespace GroundStation
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Name = "Legend1";
             this.voltageGraph.Legends.Add(legend1);
-            this.voltageGraph.Location = new System.Drawing.Point(484, 377);
+            this.voltageGraph.Location = new System.Drawing.Point(605, 471);
+            this.voltageGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.voltageGraph.Name = "voltageGraph";
             series1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series1.ChartArea = "ChartArea1";
@@ -443,7 +461,7 @@ namespace GroundStation
             series1.Legend = "Legend1";
             series1.Name = "Voltage Graph";
             this.voltageGraph.Series.Add(series1);
-            this.voltageGraph.Size = new System.Drawing.Size(218, 194);
+            this.voltageGraph.Size = new System.Drawing.Size(272, 242);
             this.voltageGraph.TabIndex = 38;
             this.voltageGraph.Text = "voltageGraph";
             // 
@@ -457,7 +475,8 @@ namespace GroundStation
             legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend2.Name = "Legend1";
             this.altGraph.Legends.Add(legend2);
-            this.altGraph.Location = new System.Drawing.Point(26, 377);
+            this.altGraph.Location = new System.Drawing.Point(32, 471);
+            this.altGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.altGraph.Name = "altGraph";
             series2.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series2.ChartArea = "ChartArea1";
@@ -466,7 +485,7 @@ namespace GroundStation
             series2.Legend = "Legend1";
             series2.Name = "Altitude Graph";
             this.altGraph.Series.Add(series2);
-            this.altGraph.Size = new System.Drawing.Size(226, 194);
+            this.altGraph.Size = new System.Drawing.Size(282, 242);
             this.altGraph.TabIndex = 36;
             this.altGraph.Text = "altGraph";
             // 
@@ -480,7 +499,8 @@ namespace GroundStation
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend3.Name = "Legend1";
             this.tempGraph.Legends.Add(legend3);
-            this.tempGraph.Location = new System.Drawing.Point(259, 377);
+            this.tempGraph.Location = new System.Drawing.Point(324, 471);
+            this.tempGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tempGraph.Name = "tempGraph";
             series3.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series3.ChartArea = "ChartArea1";
@@ -489,7 +509,7 @@ namespace GroundStation
             series3.Legend = "Legend1";
             series3.Name = "Temp Graph";
             this.tempGraph.Series.Add(series3);
-            this.tempGraph.Size = new System.Drawing.Size(221, 194);
+            this.tempGraph.Size = new System.Drawing.Size(276, 242);
             this.tempGraph.TabIndex = 35;
             this.tempGraph.Text = "tempGraph";
             // 
@@ -503,7 +523,8 @@ namespace GroundStation
             legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend4.Name = "Legend1";
             this.presGraph.Legends.Add(legend4);
-            this.presGraph.Location = new System.Drawing.Point(259, 169);
+            this.presGraph.Location = new System.Drawing.Point(324, 211);
+            this.presGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.presGraph.Name = "presGraph";
             series4.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series4.ChartArea = "ChartArea1";
@@ -512,7 +533,7 @@ namespace GroundStation
             series4.Legend = "Legend1";
             series4.Name = "Pres Graph";
             this.presGraph.Series.Add(series4);
-            this.presGraph.Size = new System.Drawing.Size(221, 202);
+            this.presGraph.Size = new System.Drawing.Size(276, 252);
             this.presGraph.TabIndex = 34;
             this.presGraph.Text = "presGraph";
             // 
@@ -526,24 +547,25 @@ namespace GroundStation
             legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend5.Name = "Legend1";
             this.packGraph.Legends.Add(legend5);
-            this.packGraph.Location = new System.Drawing.Point(26, 169);
+            this.packGraph.Location = new System.Drawing.Point(32, 211);
+            this.packGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.packGraph.Name = "packGraph";
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Legend = "Legend1";
             series5.Name = "Package Graph";
             this.packGraph.Series.Add(series5);
-            this.packGraph.Size = new System.Drawing.Size(226, 202);
+            this.packGraph.Size = new System.Drawing.Size(282, 252);
             this.packGraph.TabIndex = 33;
             this.packGraph.Text = "packGraph";
             // 
             // simulation_display
             // 
             this.simulation_display.BackColor = System.Drawing.SystemColors.Control;
-            this.simulation_display.Location = new System.Drawing.Point(537, 58);
+            this.simulation_display.Location = new System.Drawing.Point(918, 74);
             this.simulation_display.Margin = new System.Windows.Forms.Padding(2);
             this.simulation_display.Name = "simulation_display";
-            this.simulation_display.Size = new System.Drawing.Size(364, 252);
+            this.simulation_display.Size = new System.Drawing.Size(455, 315);
             this.simulation_display.TabIndex = 33;
             // 
             // timer1
@@ -574,7 +596,7 @@ namespace GroundStation
             this.gMap.GrayScaleMode = false;
             this.gMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMap.LevelsKeepInMemmory = 5;
-            this.gMap.Location = new System.Drawing.Point(948, 315);
+            this.gMap.Location = new System.Drawing.Point(1429, 396);
             this.gMap.Margin = new System.Windows.Forms.Padding(2);
             this.gMap.MarkersEnabled = true;
             this.gMap.MaxZoom = 18;
@@ -589,7 +611,7 @@ namespace GroundStation
             this.gMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMap.ShowTileGridLines = false;
-            this.gMap.Size = new System.Drawing.Size(387, 252);
+            this.gMap.Size = new System.Drawing.Size(484, 315);
             this.gMap.TabIndex = 39;
             this.gMap.Zoom = 13D;
             // 
@@ -597,18 +619,18 @@ namespace GroundStation
             // 
             this.camera_display.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.camera_display.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.camera_display.Location = new System.Drawing.Point(948, 58);
+            this.camera_display.Location = new System.Drawing.Point(1429, 74);
             this.camera_display.Margin = new System.Windows.Forms.Padding(2);
             this.camera_display.Name = "camera_display";
-            this.camera_display.Size = new System.Drawing.Size(387, 252);
+            this.camera_display.Size = new System.Drawing.Size(484, 315);
             this.camera_display.TabIndex = 32;
             // 
             // selectVidButton
             // 
-            this.selectVidButton.Location = new System.Drawing.Point(1054, 30);
+            this.selectVidButton.Location = new System.Drawing.Point(1562, 40);
             this.selectVidButton.Margin = new System.Windows.Forms.Padding(2);
             this.selectVidButton.Name = "selectVidButton";
-            this.selectVidButton.Size = new System.Drawing.Size(101, 24);
+            this.selectVidButton.Size = new System.Drawing.Size(126, 30);
             this.selectVidButton.TabIndex = 40;
             this.selectVidButton.Text = "Select File";
             this.selectVidButton.UseVisualStyleBackColor = true;
@@ -616,10 +638,10 @@ namespace GroundStation
             // 
             // startVidButton
             // 
-            this.startVidButton.Location = new System.Drawing.Point(948, 30);
+            this.startVidButton.Location = new System.Drawing.Point(1429, 40);
             this.startVidButton.Margin = new System.Windows.Forms.Padding(2);
             this.startVidButton.Name = "startVidButton";
-            this.startVidButton.Size = new System.Drawing.Size(101, 24);
+            this.startVidButton.Size = new System.Drawing.Size(126, 30);
             this.startVidButton.TabIndex = 41;
             this.startVidButton.Text = "Start";
             this.startVidButton.UseVisualStyleBackColor = true;
@@ -627,10 +649,10 @@ namespace GroundStation
             // 
             // stopVidButton
             // 
-            this.stopVidButton.Location = new System.Drawing.Point(1159, 30);
+            this.stopVidButton.Location = new System.Drawing.Point(1693, 40);
             this.stopVidButton.Margin = new System.Windows.Forms.Padding(2);
             this.stopVidButton.Name = "stopVidButton";
-            this.stopVidButton.Size = new System.Drawing.Size(101, 24);
+            this.stopVidButton.Size = new System.Drawing.Size(126, 30);
             this.stopVidButton.TabIndex = 42;
             this.stopVidButton.Text = "Stop";
             this.stopVidButton.UseVisualStyleBackColor = true;
@@ -639,35 +661,63 @@ namespace GroundStation
             // byteRecv
             // 
             this.byteRecv.AutoSize = true;
-            this.byteRecv.Location = new System.Drawing.Point(782, 582);
+            this.byteRecv.Location = new System.Drawing.Point(1103, 704);
+            this.byteRecv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.byteRecv.Name = "byteRecv";
-            this.byteRecv.Size = new System.Drawing.Size(86, 13);
+            this.byteRecv.Size = new System.Drawing.Size(111, 17);
             this.byteRecv.TabIndex = 43;
             this.byteRecv.Text = "0 Byte Received";
             // 
             // byteTotal
             // 
             this.byteTotal.AutoSize = true;
-            this.byteTotal.Location = new System.Drawing.Point(768, 542);
+            this.byteTotal.Location = new System.Drawing.Point(1085, 654);
+            this.byteTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.byteTotal.Name = "byteTotal";
-            this.byteTotal.Size = new System.Drawing.Size(123, 13);
+            this.byteTotal.Size = new System.Drawing.Size(159, 17);
             this.byteTotal.TabIndex = 44;
             this.byteTotal.Text = "PACKAGE GOES HERE";
             // 
             // videoStatus
             // 
             this.videoStatus.AutoSize = true;
-            this.videoStatus.Location = new System.Drawing.Point(779, 426);
+            this.videoStatus.Location = new System.Drawing.Point(1099, 508);
+            this.videoStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.videoStatus.Name = "videoStatus";
-            this.videoStatus.Size = new System.Drawing.Size(87, 13);
+            this.videoStatus.Size = new System.Drawing.Size(114, 17);
             this.videoStatus.TabIndex = 45;
             this.videoStatus.Text = "Vid Status: None";
             // 
+            // descSpeedGraph
+            // 
+            chartArea6.AxisX.Title = "Time(t)";
+            chartArea6.AxisY.Title = "Meters second (m/s)";
+            chartArea6.Name = "ChartArea1";
+            this.descSpeedGraph.ChartAreas.Add(chartArea6);
+            legend6.Alignment = System.Drawing.StringAlignment.Center;
+            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend6.Name = "Legend1";
+            this.descSpeedGraph.Legends.Add(legend6);
+            this.descSpeedGraph.Location = new System.Drawing.Point(608, 211);
+            this.descSpeedGraph.Margin = new System.Windows.Forms.Padding(4);
+            this.descSpeedGraph.Name = "descSpeedGraph";
+            series6.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Crimson;
+            series6.Legend = "Legend1";
+            series6.Name = "Descend Speed Graph";
+            this.descSpeedGraph.Series.Add(series6);
+            this.descSpeedGraph.Size = new System.Drawing.Size(269, 252);
+            this.descSpeedGraph.TabIndex = 46;
+            this.descSpeedGraph.Text = "chart1";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1398, 794);
+            this.ClientSize = new System.Drawing.Size(1924, 992);
+            this.Controls.Add(this.descSpeedGraph);
             this.Controls.Add(this.videoStatus);
             this.Controls.Add(this.byteTotal);
             this.Controls.Add(this.byteRecv);
@@ -708,6 +758,7 @@ namespace GroundStation
             ((System.ComponentModel.ISupportInitialize)(this.tempGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.presGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.packGraph)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.descSpeedGraph)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -766,5 +817,6 @@ namespace GroundStation
         private System.Windows.Forms.Timer PermissionTimer;
         private System.Windows.Forms.Label byteTotal;
         private System.Windows.Forms.Label videoStatus;
+        public System.Windows.Forms.DataVisualization.Charting.Chart descSpeedGraph;
     }
 }

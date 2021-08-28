@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -64,6 +65,7 @@ namespace GroundStation
         {
             gMap.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
+            gMap.ShowCenter = false; // Disable the red cross on the map
             gMap.Position = new GMap.NET.PointLatLng(41.007848569582244, 28.98043706315273); // Ininitally point to Istanbul, since no data is present
             //gMap.Position = new GMap.NET.PointLatLng(45,45); // An example usage of lat long
 
@@ -71,13 +73,24 @@ namespace GroundStation
 
         public void updateLocation(float lat, float lng)
         {
+            gMap.Position = new GMap.NET.PointLatLng((double) lat,(double) lng);
+            gMap.Zoom = 15;
             GMap.NET.WindowsForms.GMapOverlay markers = new GMap.NET.WindowsForms.GMapOverlay("markers");
-            GMap.NET.WindowsForms.GMapMarker marker =
+
+            if (ConfigurationManager.AppSettings["enableGpsPin1"] == "true") { 
+                GMap.NET.WindowsForms.GMapMarker marker1 =
+            new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
+            new GMap.NET.PointLatLng(lat, lng),
+            new Bitmap(Resource1.cursor_image,new Size(72,55)));
+                markers.Markers.Add(marker1);
+            }
+            if (ConfigurationManager.AppSettings["enableGpsPin2"] == "true") { 
+            GMap.NET.WindowsForms.GMapMarker marker2 =
             new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
             new GMap.NET.PointLatLng(lat, lng),
             GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
-                markers.Markers.Add(marker);
-
+            markers.Markers.Add(marker2);
+            }
             gMap.Overlays.Clear();
             gMap.Overlays.Add(markers);
             gMap.Update();
