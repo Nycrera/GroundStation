@@ -23,7 +23,8 @@ namespace GroundStation
 
 
         public static UdpClient CLIENT = new UdpClient(3333);
-        public static IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse("192.168.1.102"), 3333); // 22 idi ip
+        //public static IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse("192.168.1.102"), 3333); // 22 idi ip
+        public static IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse("192.168.1.101"), 3333); // 22 idi ip
         //public static IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 3333);
 
         public static bool VIDEO_SIZE_SENDED = false;
@@ -226,7 +227,7 @@ namespace GroundStation
         {
             //ReceivedStringSAVED = ReceivedString; // WE COPIED IT. (Another Event can be trigger Thats why.)
             //string[] Splitted_Telemetry = ReceivedStringSAVED.Split(',');
-            if (Splitted_Telemetry.Length != 12)
+            if (Splitted_Telemetry.Length != 15)
             {
                 Console.WriteLine("MISISNG_TEL??");
                 MissingTelemetry = true;

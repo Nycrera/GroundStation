@@ -41,16 +41,16 @@ namespace GroundStation
                 string file = openFileDialog1.FileName;
                 try
                 {
-                    string text = File.ReadAllText(file);
-                    size = text.Length;
-                    mavlink.SetVideoData(size,text);
+                    //string text = File.ReadAllText(file);
+                    //size = text.Length;
+                    //mavlink.SetVideoData(size,text);
                 }
                 catch (IOException)
                 {
                 }
             }
-            Console.WriteLine(size); // <-- Shows file size in debugging mode.
-            Console.WriteLine(result); // <-- For debugging use.
+            //Console.WriteLine(size); // <-- Shows file size in debugging mode.
+            //Console.WriteLine(result); // <-- For debugging use.
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace GroundStation
         public void UpdateData(object sender, EventArgs e)
         {
             // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5->status, 6->pitch, 7->roll, 8->yaw, 9->turn_number, 10->vid_info  // (subject to change)
-            // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5-> BATTERY_VOLT,6 ->status, 7 ->pitch, 8->roll, 9->yaw, 10->turn_number, 11->vid_info  // (subject to change)
+            // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5-> BATTERY_VOLT, 6lat , 7long , 8alt 9 ->status, 10 ->pitch, 11->roll,12->yaw, 13->turn_number, 14->vid_info  // (subject to change)
             //string[] data = mavlink.Splitted_Telemetry;
             data = mavlink.Splitted_Telemetry;
             this.Invoke(new EventHandler(InsertDataRow));
@@ -104,10 +104,17 @@ namespace GroundStation
             altGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[3]));
             tempGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[4]));
             voltageGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[5]));
-            statusLabel.Text = data[6];
-            simulationObject.angleX = float.Parse(data[7]);
-            simulationObject.angleY = float.Parse(data[8]);
-            simulationObject.angleZ = float.Parse(data[9]);
+            statusLabel.Text = data[9];
+            try
+            {
+                simulationObject.angleX = (float.Parse(data[10]) + 90); 
+                simulationObject.angleY = float.Parse(data[12]) ;
+                simulationObject.angleZ = float.Parse(data[11]) * -1  ;
+            }
+            catch
+            {
+                Console.WriteLine("");
+            }
             
         }
 
@@ -116,8 +123,24 @@ namespace GroundStation
             // This restructing could be removed when the package is in order when got from mavlink.
             // I just filled unknown data with ??
 
-            
-            string[] NewRow = { data[0], data[1], DateTime.Now.ToString(), data[2], data[3], "0" , data[4], data[5], "41.007848569582244", "28.98043706315273x", data[3], data[6], data[7], data[8], data[9], data[10], data[11]};
+            string gpsLat  = data[6];
+            string gpsLong = data[7];
+            string gpsAlt  = data[8];
+            if (float.Parse(data[6]) == 0.00)
+            {
+                gpsLat = "NOT AVAILABLE";
+            }
+            if (float.Parse(data[7]) == 0.00)
+            {
+                gpsLong = "NOT AVAILABLE";
+            }
+            if (float.Parse(data[8]) == -1.00)
+            {
+                gpsAlt = "NOT AVAILABLE";
+            }
+
+            //string[] NewRow = { data[0], data[1], DateTime.Now.ToString(), data[2], data[3], "0" , data[4], data[5], "41.007848569582244", "28.98043706315273", data[3], data[6], data[7], data[8], data[9], data[10], data[11]};
+            string[] NewRow = { data[0], data[1], DateTime.Now.ToString(), data[2], data[3], "0", data[4], data[5], gpsLat, gpsLong, gpsAlt, data[9], data[10], data[11], data[12], data[13], data[14] };
             dataGrid.Rows.Add(NewRow);
         }
 
