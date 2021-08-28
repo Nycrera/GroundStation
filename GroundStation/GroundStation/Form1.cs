@@ -73,6 +73,11 @@ namespace GroundStation
 
         public void updateLocation(float lat, float lng)
         {
+            /*if(!(Math.Abs(lat) <= 90 && Math.Abs(lng) <= 180))
+            {
+                throw new Exception("Latitude data must be between -90 and 90. Longitude data must be between -180 and 180.");
+            }*/ // I would use this to verify the data but instead I will let the gmap do it. Hopefully gmap implements errors better than me.
+
             gMap.Position = new GMap.NET.PointLatLng((double) lat,(double) lng);
             gMap.Zoom = 15;
             GMap.NET.WindowsForms.GMapOverlay markers = new GMap.NET.WindowsForms.GMapOverlay("markers");
@@ -102,7 +107,7 @@ namespace GroundStation
             // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5-> BATTERY_VOLT, 6lat , 7long , 8alt 9 ->status, 10 ->pitch, 11->roll,12->yaw, 13->turn_number, 14->vid_info  // (subject to change)
             //string[] data = mavlink.Splitted_Telemetry;
             data = mavlink.Splitted_Telemetry;
-            this.Invoke(new EventHandler(InsertDataRow));
+            this.Invoke(new EventHandler(InsertDataRow)); // IMPORTANT NOTE: INSTEAD OF INVOKE, LET'S TRY TO USE BeginInvake (it is dangerous but can be used as a last resort)
             //InsertDataRow(data);
 
             // USE INCOMING DATA HERE
@@ -117,16 +122,25 @@ namespace GroundStation
             altGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[3]));
             tempGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[4]));
             voltageGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[5]));
+            try
+            {
+                updateLocation(float.Parse(data[6]),float.Parse(data[7]));
+            }catch (Exception)
+            {
+                Console.WriteLine("Error occured during updateLocation. Use this catch for details.");
+            }
+            
+
             statusLabel.Text = data[9];
             try
             {
-                simulationObject.angleX = (float.Parse(data[10]) + 90); 
-                simulationObject.angleY = float.Parse(data[12]) ;
-                simulationObject.angleZ = float.Parse(data[11]) * -1  ;
+                simulationObject.angleX = float.Parse(data[10]); 
+                simulationObject.angleY = float.Parse(data[12]);
+                simulationObject.angleZ = float.Parse(data[11]);
             }
-            catch
+            catch (Exception)
             {
-                Console.WriteLine("");
+                Console.WriteLine("Exception occured while setting using angle data for simulation"); //To be fair it is highly unlikely for an exception to occur here.
             }
             
         }
