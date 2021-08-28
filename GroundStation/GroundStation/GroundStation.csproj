@@ -125,6 +125,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Simulation.cs" />
     <Compile Include="VideoFeed.cs" />
   </ItemGroup>
@@ -135,6 +140,10 @@
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
     <None Include="Resources\cursor-image.png" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GroundStationContent\GroundStationContent.contentproj">

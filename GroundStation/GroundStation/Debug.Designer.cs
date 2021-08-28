@@ -53,6 +53,7 @@ namespace GroundStation
             this.label7 = new System.Windows.Forms.Label();
             this.btnGpsTest = new System.Windows.Forms.Button();
             this.testTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnSaveAngle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
@@ -259,11 +260,22 @@ namespace GroundStation
             // 
             this.testTimer.Interval = 2000;
             // 
+            // btnSaveAngle
+            // 
+            this.btnSaveAngle.Location = new System.Drawing.Point(627, 231);
+            this.btnSaveAngle.Name = "btnSaveAngle";
+            this.btnSaveAngle.Size = new System.Drawing.Size(128, 49);
+            this.btnSaveAngle.TabIndex = 69;
+            this.btnSaveAngle.Text = "Save Mods";
+            this.btnSaveAngle.UseVisualStyleBackColor = true;
+            this.btnSaveAngle.Click += new System.EventHandler(this.btnSaveAngle_Click);
+            // 
             // Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(770, 490);
+            this.Controls.Add(this.btnSaveAngle);
             this.Controls.Add(this.btnGpsTest);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -324,5 +336,6 @@ namespace GroundStation
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnGpsTest;
         private System.Windows.Forms.Timer testTimer;
+        private System.Windows.Forms.Button btnSaveAngle;
     }
 }
