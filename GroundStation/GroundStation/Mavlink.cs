@@ -244,7 +244,7 @@ namespace GroundStation
             {
                 MissingTelemetry = false;
                 TOTAL_PACK.Text = Splitted_Telemetry[1];
-                TRANSFER_STATUS.Text = "Status: " + Splitted_Telemetry[10];
+                TRANSFER_STATUS.Text = "Status: " + Splitted_Telemetry[16];
                 Console.WriteLine("No missing Telemetries Checking videos and etc..");
                 if (VIDEO_SENDING_ACTIVE && !VIDEO_SENDING_COMPLETED)
                 {
