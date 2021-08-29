@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace GroundStation
 {
-    class Mavlink
+    public class Mavlink
     {
         public String ReceivedString;
         //public String ReceivedStringSAVED;
@@ -89,6 +89,11 @@ namespace GroundStation
             CLIENT.Send(WILL_SEND, WILL_SEND.Length, RemoteIpEndPoint);
             CLIENT.BeginReceive(new AsyncCallback(DataRECV_EVENT), null);
             Console.WriteLine("Sending Start Byte!");
+        }
+
+        public void setIP(string IP)
+        {
+            RemoteIpEndPoint = new IPEndPoint(IPAddress.Parse(IP), 3333);
         }
 
         public void setLastSendedTelemetry(String LASTWRITED)

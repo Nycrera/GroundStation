@@ -101,5 +101,10 @@ namespace GroundStation
 
             Settings.Default.Save();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            mainFormObject.mavlink.setIP(textBox1.Text);
+        }
     }
 }

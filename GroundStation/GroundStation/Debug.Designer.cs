@@ -47,6 +47,8 @@ namespace GroundStation
             this.btnGpsTest = new System.Windows.Forms.Button();
             this.testTimer = new System.Windows.Forms.Timer(this.components);
             this.btnSaveAngle = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
@@ -194,11 +196,30 @@ namespace GroundStation
             this.btnSaveAngle.UseVisualStyleBackColor = true;
             this.btnSaveAngle.Click += new System.EventHandler(this.btnSaveAngle_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(19, 335);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(195, 22);
+            this.textBox1.TabIndex = 70;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(19, 368);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(195, 42);
+            this.button3.TabIndex = 71;
+            this.button3.Text = "Update Sat IP";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(770, 490);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnSaveAngle);
             this.Controls.Add(this.btnGpsTest);
             this.Controls.Add(this.label7);
@@ -244,5 +265,7 @@ namespace GroundStation
         private System.Windows.Forms.Button btnGpsTest;
         private System.Windows.Forms.Timer testTimer;
         private System.Windows.Forms.Button btnSaveAngle;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button3;
     }
 }
