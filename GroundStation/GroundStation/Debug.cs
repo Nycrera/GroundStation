@@ -19,7 +19,6 @@ namespace GroundStation
         private void Debug_Load(object sender, EventArgs e)
         {
             appyAngleSave();
-            applyPosSave();
         }
 
         private void appyAngleSave()
@@ -35,18 +34,6 @@ namespace GroundStation
             labelAngleZ.Text = zAngle.Value.ToString();
         }
 
-        private void applyPosSave()
-        {
-            simulationObject.position.X = Settings.Default.posX;
-            simulationObject.position.Y = Settings.Default.posY;
-            simulationObject.position.Z = Settings.Default.posZ;
-            xPos.Value = Settings.Default.modAngleX;
-            yPos.Value = Settings.Default.modAngleY;
-            zPos.Value = Settings.Default.modAngleZ;
-            labelXPos.Text = xPos.Value.ToString();
-            labelYPos.Text = yPos.Value.ToString();
-            labelZPos.Text = zPos.Value.ToString();
-        }
         
         private void xAngle_Scroll(object sender, EventArgs e)
         {
@@ -86,24 +73,6 @@ namespace GroundStation
             }
         }
 
-        private void xPos_Scroll(object sender, EventArgs e)
-        {
-            simulationObject.position.X = (float) xPos.Value;
-            labelXPos.Text = xPos.Value.ToString();
-        }
-
-        private void yPos_Scroll(object sender, EventArgs e)
-        {
-            simulationObject.position.Y = (float)yPos.Value;
-            labelYPos.Text = yPos.Value.ToString();
-        }
-
-        private void zPos_Scroll(object sender, EventArgs e)
-        {
-            simulationObject.position.Z = (float)zPos.Value;
-            labelZPos.Text = zPos.Value.ToString();
-        }
-
         private void btnGpsTest_Click(object sender, EventArgs e)
         {
             gpsTestData.Enqueue(new float[2] { 41.023375f, 29.017108f });
@@ -129,9 +98,7 @@ namespace GroundStation
             Settings.Default.modAngleX = xAngle.Value;
             Settings.Default.modAngleY = yAngle.Value;
             Settings.Default.modAngleZ = zAngle.Value;
-            Settings.Default.posX = xPos.Value;
-            Settings.Default.posY = yPos.Value;
-            Settings.Default.posZ = zPos.Value;
+
             Settings.Default.Save();
         }
     }

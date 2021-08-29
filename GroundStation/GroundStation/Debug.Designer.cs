@@ -43,13 +43,6 @@ namespace GroundStation
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.labelZPos = new System.Windows.Forms.Label();
-            this.labelYPos = new System.Windows.Forms.Label();
-            this.labelXPos = new System.Windows.Forms.Label();
-            this.zPos = new System.Windows.Forms.TrackBar();
-            this.yPos = new System.Windows.Forms.TrackBar();
-            this.xPos = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnGpsTest = new System.Windows.Forms.Button();
             this.testTimer = new System.Windows.Forms.Timer(this.components);
@@ -57,9 +50,6 @@ namespace GroundStation
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zPos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yPos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xPos)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAngleZ
@@ -171,72 +161,6 @@ namespace GroundStation
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // labelZPos
-            // 
-            this.labelZPos.AutoSize = true;
-            this.labelZPos.Location = new System.Drawing.Point(620, 89);
-            this.labelZPos.Name = "labelZPos";
-            this.labelZPos.Size = new System.Drawing.Size(16, 17);
-            this.labelZPos.TabIndex = 64;
-            this.labelZPos.Text = "0";
-            // 
-            // labelYPos
-            // 
-            this.labelYPos.AutoSize = true;
-            this.labelYPos.Location = new System.Drawing.Point(384, 89);
-            this.labelYPos.Name = "labelYPos";
-            this.labelYPos.Size = new System.Drawing.Size(16, 17);
-            this.labelYPos.TabIndex = 63;
-            this.labelYPos.Text = "0";
-            // 
-            // labelXPos
-            // 
-            this.labelXPos.AutoSize = true;
-            this.labelXPos.Location = new System.Drawing.Point(126, 89);
-            this.labelXPos.Name = "labelXPos";
-            this.labelXPos.Size = new System.Drawing.Size(16, 17);
-            this.labelXPos.TabIndex = 62;
-            this.labelXPos.Text = "0";
-            // 
-            // zPos
-            // 
-            this.zPos.Location = new System.Drawing.Point(513, 50);
-            this.zPos.Maximum = 100;
-            this.zPos.Minimum = -100;
-            this.zPos.Name = "zPos";
-            this.zPos.Size = new System.Drawing.Size(234, 56);
-            this.zPos.TabIndex = 61;
-            this.zPos.Scroll += new System.EventHandler(this.zPos_Scroll);
-            // 
-            // yPos
-            // 
-            this.yPos.Location = new System.Drawing.Point(273, 50);
-            this.yPos.Maximum = 100;
-            this.yPos.Minimum = -100;
-            this.yPos.Name = "yPos";
-            this.yPos.Size = new System.Drawing.Size(234, 56);
-            this.yPos.TabIndex = 60;
-            this.yPos.Scroll += new System.EventHandler(this.yPos_Scroll);
-            // 
-            // xPos
-            // 
-            this.xPos.Location = new System.Drawing.Point(19, 50);
-            this.xPos.Maximum = 100;
-            this.xPos.Minimum = -100;
-            this.xPos.Name = "xPos";
-            this.xPos.Size = new System.Drawing.Size(234, 56);
-            this.xPos.TabIndex = 59;
-            this.xPos.Scroll += new System.EventHandler(this.xPos_Scroll);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(310, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(153, 17);
-            this.label6.TabIndex = 65;
-            this.label6.Text = "Model Position (X,Y,Z):";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -278,13 +202,6 @@ namespace GroundStation
             this.Controls.Add(this.btnSaveAngle);
             this.Controls.Add(this.btnGpsTest);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.labelZPos);
-            this.Controls.Add(this.labelYPos);
-            this.Controls.Add(this.labelXPos);
-            this.Controls.Add(this.zPos);
-            this.Controls.Add(this.yPos);
-            this.Controls.Add(this.xPos);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -304,9 +221,6 @@ namespace GroundStation
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zPos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yPos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xPos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,13 +240,6 @@ namespace GroundStation
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label labelZPos;
-        private System.Windows.Forms.Label labelYPos;
-        private System.Windows.Forms.Label labelXPos;
-        private System.Windows.Forms.TrackBar zPos;
-        private System.Windows.Forms.TrackBar yPos;
-        private System.Windows.Forms.TrackBar xPos;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnGpsTest;
         private System.Windows.Forms.Timer testTimer;
