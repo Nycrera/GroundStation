@@ -58,5 +58,17 @@ namespace GroundStation {
                 this["modAngleZ"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("notset")]
+        public string satIP {
+            get {
+                return ((string)(this["satIP"]));
+            }
+            set {
+                this["satIP"] = value;
+            }
+        }
     }
 }

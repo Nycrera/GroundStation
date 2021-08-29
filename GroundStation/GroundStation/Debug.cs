@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace GroundStation
         private void Debug_Load(object sender, EventArgs e)
         {
             appyAngleSave();
+            applyIPSave();
         }
 
         private void appyAngleSave()
@@ -32,6 +34,14 @@ namespace GroundStation
             labelAngleX.Text = xAngle.Value.ToString();
             labelAngleY.Text = yAngle.Value.ToString();
             labelAngleZ.Text = zAngle.Value.ToString();
+        }
+
+        private void applyIPSave()
+        {
+            if (Settings.Default.satIP != "notset") {
+                mainFormObject.mavlink.setIP(Settings.Default.satIP);
+                textBox1.Text = Settings.Default.satIP;
+            }
         }
 
         
@@ -104,7 +114,32 @@ namespace GroundStation
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (!ValidateIPv4(textBox1.Text))
+            {
+                MessageBox.Show("The IP address is invalid.");
+                return;
+            }
             mainFormObject.mavlink.setIP(textBox1.Text);
+            Settings.Default.satIP = textBox1.Text;
+            Settings.Default.Save();
+        }
+
+        private bool ValidateIPv4(string ipString)
+        {
+            if (String.IsNullOrWhiteSpace(ipString))
+            {
+                return false;
+            }
+
+            string[] splitValues = ipString.Split('.');
+            if (splitValues.Length != 4)
+            {
+                return false;
+            }
+
+            byte tempForParsing;
+
+            return splitValues.All(r => byte.TryParse(r, out tempForParsing));
         }
     }
 }

@@ -11,5 +11,8 @@
     <Setting Name="modAngleZ" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="satIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">notset</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
