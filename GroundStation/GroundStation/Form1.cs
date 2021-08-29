@@ -103,8 +103,7 @@ namespace GroundStation
 
         public void UpdateData(object sender, EventArgs e)
         {
-            // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5->status, 6->pitch, 7->roll, 8->yaw, 9->turn_number, 10->vid_info  // (subject to change)
-            // 0->team_id, 1->pkg_number, 2->pressure, 3->alt, 4->temp, 5-> BATTERY_VOLT, 6lat , 7long , 8alt 9 ->status, 10 ->pitch, 11->roll,12->yaw, 13->turn_number, 14->vid_info  // (subject to change)
+            // 0->team_id, 1->pkg_number, 2-> gps time, 3->pressure, 4->alt, 5-> descend speed, 6->temp, 7-> BATTERY_VOLT,8->lat , 9->long , 10->alt 11->status, 12 ->pitch, 13->roll,14->yaw, 15->turn_number, 16->vid_info  // (subject to change)
             //string[] data = mavlink.Splitted_Telemetry;
             data = mavlink.Splitted_Telemetry;
             this.Invoke(new EventHandler(InsertDataRow)); // IMPORTANT NOTE: INSTEAD OF INVOKE, LET'S TRY TO USE BeginInvake (it is dangerous but can be used as a last resort)
@@ -118,13 +117,14 @@ namespace GroundStation
             }
             double operationTime = Math.Round((DateTime.Now - FirstTelemetryTime).TotalSeconds,2); // I did round to 2 decimal places. Idk how this would look.
             packGraph.Series[0].Points.AddXY(operationTime, Int32.Parse(data[1]));
-            presGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[2]));
-            altGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[3]));
-            tempGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[4]));
-            voltageGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[5]));
+            presGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[3]));
+            altGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[4]));
+            descSpeedGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[5]));
+            tempGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[6]));
+            voltageGraph.Series[0].Points.AddXY(operationTime, Double.Parse(data[7]));
             try
             {
-                updateLocation(float.Parse(data[6]),float.Parse(data[7]));
+                updateLocation(float.Parse(data[8]),float.Parse(data[9]));
             }catch (Exception)
             {
                 Console.WriteLine("Error occured during updateLocation. Use this catch for details.");
@@ -134,9 +134,9 @@ namespace GroundStation
             statusLabel.Text = data[9];
             try
             {
-                simulationObject.angleX = float.Parse(data[10]); 
-                simulationObject.angleY = float.Parse(data[12]);
-                simulationObject.angleZ = float.Parse(data[11]);
+                simulationObject.angleX = float.Parse(data[13]); 
+                simulationObject.angleY = float.Parse(data[14]);
+                simulationObject.angleZ = float.Parse(data[15]);
             }
             catch (Exception)
             {
@@ -150,24 +150,23 @@ namespace GroundStation
             // This restructing could be removed when the package is in order when got from mavlink.
             // I just filled unknown data with ??
 
-            string gpsLat  = data[6];
-            string gpsLong = data[7];
-            string gpsAlt  = data[8];
-            if (float.Parse(data[6]) == 0.00)
+            string gpsLat  = data[8];
+            string gpsLong = data[9];
+            string gpsAlt  = data[10];
+            if (float.Parse(data[8]) == 0.00)
             {
                 gpsLat = "NOT AVAILABLE";
             }
-            if (float.Parse(data[7]) == 0.00)
+            if (float.Parse(data[9]) == 0.00)
             {
                 gpsLong = "NOT AVAILABLE";
             }
-            if (float.Parse(data[8]) == -1.00)
+            if (float.Parse(data[10]) == -1.00)
             {
                 gpsAlt = "NOT AVAILABLE";
             }
 
-            //string[] NewRow = { data[0], data[1], DateTime.Now.ToString(), data[2], data[3], "0" , data[4], data[5], "41.007848569582244", "28.98043706315273", data[3], data[6], data[7], data[8], data[9], data[10], data[11]};
-            string[] NewRow = { data[0], data[1], DateTime.Now.ToString(), data[2], data[3], "0", data[4], data[5], gpsLat, gpsLong, gpsAlt, data[9], data[10], data[11], data[12], data[13], data[14] };
+            string[] NewRow = { data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], gpsLat, gpsLong, gpsAlt, data[11], data[12], data[13], data[14], data[15], data[16] };
             dataGrid.Rows.Add(NewRow);
         }
 

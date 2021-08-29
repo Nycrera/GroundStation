@@ -227,7 +227,7 @@ namespace GroundStation
         {
             //ReceivedStringSAVED = ReceivedString; // WE COPIED IT. (Another Event can be trigger Thats why.)
             //string[] Splitted_Telemetry = ReceivedStringSAVED.Split(',');
-            if (Splitted_Telemetry.Length != 15)
+            if (Splitted_Telemetry.Length != 17)
             {
                 Console.WriteLine("MISISNG_TEL??");
                 MissingTelemetry = true;
