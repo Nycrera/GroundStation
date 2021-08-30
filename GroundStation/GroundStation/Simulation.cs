@@ -102,8 +102,9 @@ namespace GroundStation
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            positionMatrix = Matrix.CreateRotationX((float)(Math.PI * (angleX+modAngleX) / 180.0)) * Matrix.CreateRotationY((float)(Math.PI * (angleY+modAngleY) / 180.0)) * Matrix.CreateRotationZ((float)(Math.PI * (angleZ+modAngleZ) / 180.0)) * Matrix.CreateTranslation(position);
-            
+            positionMatrix = Matrix.CreateFromYawPitchRoll((float)(Math.PI * ((angleZ + modAngleZ) / 180.0)), (float)(Math.PI * ((angleX + modAngleX) / 180.0)), (float)(Math.PI * ((angleY + modAngleY) / 180.0))) * Matrix.CreateTranslation(position);
+            //positionMatrix = Matrix.CreateRotationX((float)(Math.PI * ((angleX+modAngleX) / 180.0))) * Matrix.CreateRotationY((float)(Math.PI * ((angleY+modAngleY) / 180.0))) * Matrix.CreateRotationZ((float)(Math.PI * ((angleZ + modAngleZ) / 180.0))) * Matrix.CreateTranslation(position);
+
             DrawModel(model, positionMatrix, view, projection);
 
             base.Draw(gameTime);
