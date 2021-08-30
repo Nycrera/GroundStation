@@ -14,6 +14,8 @@ namespace GroundStation
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Model model;
+        public bool customCamEnabled = false;
+        public Vector3 cameraPos;
         public float modAngleX = 0, modAngleY = 0, modAngleZ = 0;
         public float angleX = 0;
         public float angleY = 0;
@@ -101,6 +103,13 @@ namespace GroundStation
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            if (!customCamEnabled) view = Matrix.CreateLookAt(new Vector3(28, 28, 28), new Vector3(0, 0, 0), Vector3.UnitY);
+            else {
+                Vector3 camCartesianPos = SphericalToCartesian(cameraPos.X, (float)(Math.PI * cameraPos.Y / 180.0), (float)(Math.PI * cameraPos.Z / 180.0));
+                
+               view = Matrix.CreateLookAt(new Vector3(camCartesianPos.X, camCartesianPos.Y, camCartesianPos.Z), new Vector3(0, 0, 0), Vector3.UnitY);
+            } 
+
             // TODO: Add your drawing code here
             positionMatrix = Matrix.CreateFromYawPitchRoll((float)(Math.PI * ((angleZ + modAngleZ) / 180.0)), (float)(Math.PI * ((angleX + modAngleX) / 180.0)), (float)(Math.PI * ((angleY + modAngleY) / 180.0))) * Matrix.CreateTranslation(position);
             //positionMatrix = Matrix.CreateRotationX((float)(Math.PI * ((angleX+modAngleX) / 180.0))) * Matrix.CreateRotationY((float)(Math.PI * ((angleY+modAngleY) / 180.0))) * Matrix.CreateRotationZ((float)(Math.PI * ((angleZ + modAngleZ) / 180.0))) * Matrix.CreateTranslation(position);
@@ -138,6 +147,16 @@ namespace GroundStation
 
                 mesh.Draw();
             }
+        }
+
+        private static Vector3 SphericalToCartesian(float radius, float polar, float elevation)
+        {
+            Vector3 outCart = new Vector3();
+            float a = radius * (float) Math.Cos(elevation);
+            outCart.X = a * (float) Math.Cos(polar);
+            outCart.Y = radius * (float) Math.Sin(elevation);
+            outCart.Z = a * (float) Math.Sin(polar);
+            return outCart;
         }
 
     }

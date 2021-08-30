@@ -49,9 +49,20 @@ namespace GroundStation
             this.btnSaveAngle = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelEl = new System.Windows.Forms.Label();
+            this.labelPol = new System.Windows.Forms.Label();
+            this.labelRad = new System.Windows.Forms.Label();
+            this.camElevationBar = new System.Windows.Forms.TrackBar();
+            this.camPolarBar = new System.Windows.Forms.TrackBar();
+            this.camRadiusBar = new System.Windows.Forms.TrackBar();
+            this.customCamEnable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.camElevationBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.camPolarBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.camRadiusBar)).BeginInit();
             this.SuspendLayout();
             // 
             // labelAngleZ
@@ -213,11 +224,96 @@ namespace GroundStation
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(243, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(309, 17);
+            this.label3.TabIndex = 78;
+            this.label3.Text = "Camera Spherical Pos (Radius,Polar,Elevation):";
+            // 
+            // labelEl
+            // 
+            this.labelEl.AutoSize = true;
+            this.labelEl.Location = new System.Drawing.Point(620, 93);
+            this.labelEl.Name = "labelEl";
+            this.labelEl.Size = new System.Drawing.Size(16, 17);
+            this.labelEl.TabIndex = 77;
+            this.labelEl.Text = "0";
+            // 
+            // labelPol
+            // 
+            this.labelPol.AutoSize = true;
+            this.labelPol.Location = new System.Drawing.Point(384, 93);
+            this.labelPol.Name = "labelPol";
+            this.labelPol.Size = new System.Drawing.Size(16, 17);
+            this.labelPol.TabIndex = 76;
+            this.labelPol.Text = "0";
+            // 
+            // labelRad
+            // 
+            this.labelRad.AutoSize = true;
+            this.labelRad.Location = new System.Drawing.Point(126, 93);
+            this.labelRad.Name = "labelRad";
+            this.labelRad.Size = new System.Drawing.Size(16, 17);
+            this.labelRad.TabIndex = 75;
+            this.labelRad.Text = "0";
+            // 
+            // camElevationBar
+            // 
+            this.camElevationBar.Location = new System.Drawing.Point(513, 54);
+            this.camElevationBar.Maximum = 360;
+            this.camElevationBar.Minimum = -360;
+            this.camElevationBar.Name = "camElevationBar";
+            this.camElevationBar.Size = new System.Drawing.Size(234, 56);
+            this.camElevationBar.TabIndex = 74;
+            this.camElevationBar.Scroll += new System.EventHandler(this.camElevationBar_Scroll);
+            // 
+            // camPolarBar
+            // 
+            this.camPolarBar.Location = new System.Drawing.Point(273, 54);
+            this.camPolarBar.Maximum = 360;
+            this.camPolarBar.Minimum = -360;
+            this.camPolarBar.Name = "camPolarBar";
+            this.camPolarBar.Size = new System.Drawing.Size(234, 56);
+            this.camPolarBar.TabIndex = 73;
+            this.camPolarBar.Scroll += new System.EventHandler(this.camPolarBar_Scroll);
+            // 
+            // camRadiusBar
+            // 
+            this.camRadiusBar.Location = new System.Drawing.Point(19, 54);
+            this.camRadiusBar.Maximum = 360;
+            this.camRadiusBar.Minimum = -360;
+            this.camRadiusBar.Name = "camRadiusBar";
+            this.camRadiusBar.Size = new System.Drawing.Size(234, 56);
+            this.camRadiusBar.TabIndex = 72;
+            this.camRadiusBar.Scroll += new System.EventHandler(this.camRadiusBar_Scroll);
+            // 
+            // customCamEnable
+            // 
+            this.customCamEnable.AutoSize = true;
+            this.customCamEnable.Location = new System.Drawing.Point(558, 8);
+            this.customCamEnable.Name = "customCamEnable";
+            this.customCamEnable.Size = new System.Drawing.Size(74, 21);
+            this.customCamEnable.TabIndex = 79;
+            this.customCamEnable.Text = "Enable";
+            this.customCamEnable.UseVisualStyleBackColor = true;
+            this.customCamEnable.CheckedChanged += new System.EventHandler(this.customCamEnable_CheckedChanged);
+            // 
             // Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(770, 490);
+            this.Controls.Add(this.customCamEnable);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.labelEl);
+            this.Controls.Add(this.labelPol);
+            this.Controls.Add(this.labelRad);
+            this.Controls.Add(this.camElevationBar);
+            this.Controls.Add(this.camPolarBar);
+            this.Controls.Add(this.camRadiusBar);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnSaveAngle);
@@ -242,6 +338,9 @@ namespace GroundStation
             ((System.ComponentModel.ISupportInitialize)(this.zAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xAngle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.camElevationBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.camPolarBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.camRadiusBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +366,13 @@ namespace GroundStation
         private System.Windows.Forms.Button btnSaveAngle;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelEl;
+        private System.Windows.Forms.Label labelPol;
+        private System.Windows.Forms.Label labelRad;
+        private System.Windows.Forms.TrackBar camElevationBar;
+        private System.Windows.Forms.TrackBar camPolarBar;
+        private System.Windows.Forms.TrackBar camRadiusBar;
+        private System.Windows.Forms.CheckBox customCamEnable;
     }
 }

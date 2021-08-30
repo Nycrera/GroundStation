@@ -141,5 +141,28 @@ namespace GroundStation
 
             return splitValues.All(r => byte.TryParse(r, out tempForParsing));
         }
+
+        private void camRadiusBar_Scroll(object sender, EventArgs e)
+        {
+            mainFormObject.simulationObject.cameraPos.X = camRadiusBar.Value;
+            labelRad.Text = camRadiusBar.Value.ToString();
+        }
+
+        private void camPolarBar_Scroll(object sender, EventArgs e)
+        {
+            mainFormObject.simulationObject.cameraPos.Y = camPolarBar.Value;
+            labelPol.Text = camPolarBar.Value.ToString();
+        }
+
+        private void camElevationBar_Scroll(object sender, EventArgs e)
+        {
+            mainFormObject.simulationObject.cameraPos.Z = camElevationBar.Value;
+            labelEl.Text = camElevationBar.Value.ToString();
+        }
+
+        private void customCamEnable_CheckedChanged(object sender, EventArgs e)
+        {
+           mainFormObject.simulationObject.customCamEnabled =  customCamEnable.Checked;
+        }
     }
 }
