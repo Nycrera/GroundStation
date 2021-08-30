@@ -20,7 +20,7 @@ namespace GroundStation
         public float angleZ = 0;
         private Vector3 position = new Vector3(0, 0, 0); // POSITION MATRIX Y AXS MAKED 45 TO SEE IN THE MIDDLE SATELLEITE.
         private Matrix positionMatrix = Matrix.CreateTranslation(new Vector3(0,0,0)); // positionMatrix = CreateTranslation(position)
-        private Matrix view = Matrix.CreateLookAt(new Vector3(200, 200, 200), new Vector3(0, 0, 0), Vector3.UnitY);
+        private Matrix view = Matrix.CreateLookAt(new Vector3(28, 28, 28), new Vector3(0, 0, 0), Vector3.UnitY);
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 600f);
 
         public Simulation(IntPtr drawSurface)
@@ -67,7 +67,7 @@ namespace GroundStation
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            model = this.Content.Load<Model>(@"mode_uydu");
+            model = this.Content.Load<Model>(@"cool_Sat");
             // TODO: use this.Content to load your game content here
         }
 
@@ -105,17 +105,30 @@ namespace GroundStation
             positionMatrix = Matrix.CreateFromYawPitchRoll((float)(Math.PI * ((angleZ + modAngleZ) / 180.0)), (float)(Math.PI * ((angleX + modAngleX) / 180.0)), (float)(Math.PI * ((angleY + modAngleY) / 180.0))) * Matrix.CreateTranslation(position);
             //positionMatrix = Matrix.CreateRotationX((float)(Math.PI * ((angleX+modAngleX) / 180.0))) * Matrix.CreateRotationY((float)(Math.PI * ((angleY+modAngleY) / 180.0))) * Matrix.CreateRotationZ((float)(Math.PI * ((angleZ + modAngleZ) / 180.0))) * Matrix.CreateTranslation(position);
 
-            DrawModel(model, positionMatrix, view, projection);
+            DrawModel(model, positionMatrix, view, projection, gameTime);
 
             base.Draw(gameTime);
         }
-        private void DrawModel(Model model, Matrix modelTranslation, Matrix view, Matrix projection)
+        private void DrawModel(Model model, Matrix modelTranslation, Matrix view, Matrix projection, GameTime time)
         {
+            Matrix[] transforms = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transforms);
             foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.World = modelTranslation;
+                    switch (mesh.ParentBone.Index)
+                    {
+                        case 398:
+                            effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationY((float)(Math.PI * (0.5 * time.TotalGameTime.TotalSeconds))) * modelTranslation;
+                            break;
+                        case 37:
+                            effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationY((float)(Math.PI * (-0.5 * time.TotalGameTime.TotalSeconds))) * modelTranslation;
+                            break;
+                        default:
+                            effect.World = transforms[mesh.ParentBone.Index] * modelTranslation;
+                            break;
+                    }
                     effect.View = view;
                     effect.Projection = projection;
                     effect.LightingEnabled = true;
