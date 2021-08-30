@@ -18,9 +18,8 @@ namespace GroundStation
         public float angleX = 0;
         public float angleY = 0;
         public float angleZ = 0;
-        public Vector3 position = new Vector3(0, 0, 0); // POSITION MATRIX Y AXS MAKED 45 TO SEE IN THE MIDDLE SATELLEITE.
+        private Vector3 position = new Vector3(0, 0, 0); // POSITION MATRIX Y AXS MAKED 45 TO SEE IN THE MIDDLE SATELLEITE.
         private Matrix positionMatrix = Matrix.CreateTranslation(new Vector3(0,0,0)); // positionMatrix = CreateTranslation(position)
-        private Matrix world = Matrix.CreateTranslation(new Vector3(0, 0, 0));
         private Matrix view = Matrix.CreateLookAt(new Vector3(200, 200, 200), new Vector3(0, 0, 0), Vector3.UnitY);
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 600f);
 
@@ -115,11 +114,12 @@ namespace GroundStation
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    effect.EnableDefaultLighting();
                     effect.World = modelTranslation;
                     effect.View = view;
                     effect.Projection = projection;
                     effect.LightingEnabled = true;
+                    effect.EnableDefaultLighting();
+                    effect.PreferPerPixelLighting = true;
                 }
 
                 mesh.Draw();
