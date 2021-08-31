@@ -30,7 +30,9 @@ namespace GroundStation
         public static bool VIDEO_SIZE_SENDED = false;
         public int VIDEO_SIZE = 1000000; // 10 000 Byte
 
+        public string VIDEO_FULL_DATA;
         public string VIDEO_BYTE = "111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"; // 200 Byte
+        public int VIDEO_MAX_PACKAGE_SIZE = 200;
         public static bool VIDEO_SENDING_ACTIVE = false;
         public static bool VIDEO_SENDING_COMPLETED = false;
 
@@ -80,7 +82,8 @@ namespace GroundStation
         public void SetVideoData(int size, string data)
         { // Added extra, sets the video data, used by the main form.
             VIDEO_SIZE = size;
-            VIDEO_BYTE = data;
+            VIDEO_FULL_DATA = data;
+            VIDEO_BYTE = VIDEO_FULL_DATA.Substring(REACHED_BYTE, ((REACHED_BYTE + VIDEO_MAX_PACKAGE_SIZE) <= VIDEO_FULL_DATA.Length) ? REACHED_BYTE + VIDEO_MAX_PACKAGE_SIZE : VIDEO_FULL_DATA.Length - REACHED_BYTE);
         }
         public void Connect_Event(object sender, EventArgs e)
         {
@@ -180,6 +183,7 @@ namespace GroundStation
                                 */
                             INCREASED_TIMES += 1;
                             REACHED_BYTE += VIDEO_BYTE.Length;
+                            VIDEO_BYTE = VIDEO_FULL_DATA.Substring(REACHED_BYTE, ((REACHED_BYTE + VIDEO_MAX_PACKAGE_SIZE) <= VIDEO_FULL_DATA.Length) ? REACHED_BYTE + VIDEO_MAX_PACKAGE_SIZE : VIDEO_FULL_DATA.Length - REACHED_BYTE);
                             REACHED_VIDEO_LABEL.Text = REACHED_BYTE.ToString() + " Byte Received";
                         }
                         else

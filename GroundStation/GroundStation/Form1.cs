@@ -42,12 +42,14 @@ namespace GroundStation
                 string file = openFileDialog1.FileName;
                 try
                 {
-                    //string text = File.ReadAllText(file);
-                    //size = text.Length;
-                    //mavlink.SetVideoData(size,text);
+                    string text = File.ReadAllText(file);
+                    size = text.Length;
+                    mavlink.SetVideoData(size,text);
+                    labelFileName.Text = "Selected File: " + Path.GetFileName(file);
                 }
                 catch (IOException)
                 {
+                    MessageBox.Show("Can't open video file: "+ file);
                 }
             }
             //Console.WriteLine(size); // <-- Shows file size in debugging mode.

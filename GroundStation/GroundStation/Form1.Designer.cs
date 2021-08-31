@@ -107,6 +107,7 @@ namespace GroundStation
             this.byteTotal = new System.Windows.Forms.Label();
             this.videoStatus = new System.Windows.Forms.Label();
             this.descSpeedGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.labelFileName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.voltageGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.altGraph)).BeginInit();
@@ -143,7 +144,7 @@ namespace GroundStation
             // active10SecBut
             // 
             this.active10SecBut.Location = new System.Drawing.Point(265, 128);
-            this.active10SecBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.active10SecBut.Margin = new System.Windows.Forms.Padding(4);
             this.active10SecBut.Name = "active10SecBut";
             this.active10SecBut.Size = new System.Drawing.Size(224, 62);
             this.active10SecBut.TabIndex = 19;
@@ -154,7 +155,7 @@ namespace GroundStation
             // activeAlBut
             // 
             this.activeAlBut.Location = new System.Drawing.Point(265, 56);
-            this.activeAlBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.activeAlBut.Margin = new System.Windows.Forms.Padding(4);
             this.activeAlBut.Name = "activeAlBut";
             this.activeAlBut.Size = new System.Drawing.Size(224, 62);
             this.activeAlBut.TabIndex = 18;
@@ -165,7 +166,7 @@ namespace GroundStation
             // releaseBut
             // 
             this.releaseBut.Location = new System.Drawing.Point(32, 128);
-            this.releaseBut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.releaseBut.Margin = new System.Windows.Forms.Padding(4);
             this.releaseBut.Name = "releaseBut";
             this.releaseBut.Size = new System.Drawing.Size(224, 62);
             this.releaseBut.TabIndex = 17;
@@ -177,7 +178,7 @@ namespace GroundStation
             // 
             this.startButton.Enabled = false;
             this.startButton.Location = new System.Drawing.Point(32, 56);
-            this.startButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.startButton.Margin = new System.Windows.Forms.Padding(4);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(224, 62);
             this.startButton.TabIndex = 16;
@@ -228,7 +229,7 @@ namespace GroundStation
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGrid.Location = new System.Drawing.Point(12, 761);
-            this.dataGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGrid.Margin = new System.Windows.Forms.Padding(4);
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -399,7 +400,7 @@ namespace GroundStation
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(1030, 14);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(142, 28);
             this.button1.TabIndex = 27;
@@ -410,7 +411,7 @@ namespace GroundStation
             // send_video
             // 
             this.send_video.Location = new System.Drawing.Point(1051, 587);
-            this.send_video.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.send_video.Margin = new System.Windows.Forms.Padding(4);
             this.send_video.Name = "send_video";
             this.send_video.Size = new System.Drawing.Size(224, 62);
             this.send_video.TabIndex = 26;
@@ -452,7 +453,7 @@ namespace GroundStation
             legend1.Name = "Legend1";
             this.voltageGraph.Legends.Add(legend1);
             this.voltageGraph.Location = new System.Drawing.Point(605, 471);
-            this.voltageGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.voltageGraph.Margin = new System.Windows.Forms.Padding(4);
             this.voltageGraph.Name = "voltageGraph";
             series1.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series1.ChartArea = "ChartArea1";
@@ -476,7 +477,7 @@ namespace GroundStation
             legend2.Name = "Legend1";
             this.altGraph.Legends.Add(legend2);
             this.altGraph.Location = new System.Drawing.Point(32, 471);
-            this.altGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altGraph.Margin = new System.Windows.Forms.Padding(4);
             this.altGraph.Name = "altGraph";
             series2.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series2.ChartArea = "ChartArea1";
@@ -500,7 +501,7 @@ namespace GroundStation
             legend3.Name = "Legend1";
             this.tempGraph.Legends.Add(legend3);
             this.tempGraph.Location = new System.Drawing.Point(324, 471);
-            this.tempGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tempGraph.Margin = new System.Windows.Forms.Padding(4);
             this.tempGraph.Name = "tempGraph";
             series3.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series3.ChartArea = "ChartArea1";
@@ -524,7 +525,7 @@ namespace GroundStation
             legend4.Name = "Legend1";
             this.presGraph.Legends.Add(legend4);
             this.presGraph.Location = new System.Drawing.Point(324, 211);
-            this.presGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.presGraph.Margin = new System.Windows.Forms.Padding(4);
             this.presGraph.Name = "presGraph";
             series4.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             series4.ChartArea = "ChartArea1";
@@ -548,7 +549,7 @@ namespace GroundStation
             legend5.Name = "Legend1";
             this.packGraph.Legends.Add(legend5);
             this.packGraph.Location = new System.Drawing.Point(32, 211);
-            this.packGraph.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.packGraph.Margin = new System.Windows.Forms.Padding(4);
             this.packGraph.Name = "packGraph";
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
@@ -712,11 +713,22 @@ namespace GroundStation
             this.descSpeedGraph.TabIndex = 46;
             this.descSpeedGraph.Text = "chart1";
             // 
+            // labelFileName
+            // 
+            this.labelFileName.AutoSize = true;
+            this.labelFileName.Location = new System.Drawing.Point(1085, 471);
+            this.labelFileName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFileName.Name = "labelFileName";
+            this.labelFileName.Size = new System.Drawing.Size(131, 17);
+            this.labelFileName.TabIndex = 47;
+            this.labelFileName.Text = "Selected File: None";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1924, 992);
+            this.Controls.Add(this.labelFileName);
             this.Controls.Add(this.descSpeedGraph);
             this.Controls.Add(this.videoStatus);
             this.Controls.Add(this.byteTotal);
@@ -818,5 +830,6 @@ namespace GroundStation
         private System.Windows.Forms.Label byteTotal;
         private System.Windows.Forms.Label videoStatus;
         public System.Windows.Forms.DataVisualization.Charting.Chart descSpeedGraph;
+        private System.Windows.Forms.Label labelFileName;
     }
 }
