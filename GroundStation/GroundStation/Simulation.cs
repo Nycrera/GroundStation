@@ -22,7 +22,7 @@ namespace GroundStation
         public float angleZ = 0;
         private Vector3 position = new Vector3(0, 0, 0); // POSITION MATRIX Y AXS MAKED 45 TO SEE IN THE MIDDLE SATELLEITE.
         private Matrix positionMatrix = Matrix.CreateTranslation(new Vector3(0,0,0)); // positionMatrix = CreateTranslation(position)
-        private Matrix view = Matrix.CreateLookAt(new Vector3(28, 28, 28), new Vector3(0, 0, 0), Vector3.UnitY);
+        private Matrix view = Matrix.CreateLookAt(new Vector3(200, 200, 200), new Vector3(0, 0, 0), Vector3.UnitY);
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 600f);
 
         public Simulation(IntPtr drawSurface)
@@ -69,7 +69,7 @@ namespace GroundStation
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            model = this.Content.Load<Model>(@"cool_Sat");
+            model = this.Content.Load<Model>(@"mode_uydu");
             // TODO: use this.Content to load your game content here
         }
 
@@ -103,7 +103,7 @@ namespace GroundStation
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            if (!customCamEnabled) view = Matrix.CreateLookAt(new Vector3(28, 28, 28), new Vector3(0, 0, 0), Vector3.UnitY);
+            if (!customCamEnabled) view = Matrix.CreateLookAt(new Vector3(200, 200, 200), new Vector3(0, 0, 0), Vector3.UnitY);
             else {
                 Vector3 camCartesianPos = SphericalToCartesian(cameraPos.X, (float)(Math.PI * cameraPos.Y / 180.0), (float)(Math.PI * cameraPos.Z / 180.0));
                 
@@ -126,6 +126,7 @@ namespace GroundStation
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
+                    /*
                     switch (mesh.ParentBone.Index)
                     {
                         case 398:
@@ -138,6 +139,8 @@ namespace GroundStation
                             effect.World = transforms[mesh.ParentBone.Index] * modelTranslation;
                             break;
                     }
+                    */
+                    effect.World = modelTranslation;
                     effect.View = view;
                     effect.Projection = projection;
                     effect.LightingEnabled = true;
