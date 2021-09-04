@@ -136,9 +136,9 @@ namespace GroundStation
             statusLabel.Text = data[9];
             try
             {
-                simulationObject.angleX = float.Parse(data[13]); 
-                simulationObject.angleY = float.Parse(data[14]);
-                simulationObject.angleZ = float.Parse(data[15]);
+                simulationObject.angleX = float.Parse(data[12]); 
+                simulationObject.angleY = float.Parse(data[13]);
+                simulationObject.angleZ = float.Parse(data[14]);
             }
             catch (Exception)
             {
